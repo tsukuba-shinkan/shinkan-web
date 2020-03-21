@@ -2,3 +2,39 @@
 * {
     font-family: 'Noto Sans JP', sans-serif;
 }
+header {
+    background-color: #fff;
+    height: 80px;
+    box-shadow: 0 1.5px 1px 1px rgba(0, 0, 0, 0.5) ;
+}
+
+header div {
+    height: 80px;
+    margin: 0 auto;
+    max-width: 960px;
+    padding: 16px;
+}
+
+header div h1 {
+    height: 48px;
+}
+
+header div h1 a {
+    display: inline-block;
+    height: 48px;
+    top: 0;
+}
+
+header div h1 img,span {
+    vertical-align: middle;
+}
+
+#headerLogo {
+    margin: 0 16px 0 0;
+    height: 48px;
+    width: auto;
+}
+
+header div h1 span {
+    font-size: 1.2rem;
+}
