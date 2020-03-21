@@ -26,6 +26,9 @@ git checkout master
 ```
 
 #### 変更の反映
+各コミットにはLintに引っかかるエラーがないことを確認してください。  
+Lintは`git commit`の際に自動で実行されるほか、手動で実行する（`npm run lint`）こともできます。自動で修正可能な問題は`npm run lintfix`で修正することもできます。
+
 upstreamに変更が加えられた場合は以下のようにしてローカルに変更を反映させてください。（毎作業ごとに行うことを推奨します。）
 ```console
 git fetch upstream
