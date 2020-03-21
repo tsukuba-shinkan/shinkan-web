@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `筑波大学新歓Web`,
-    description: ``,
+    description: `筑波大学内の学生団体情報ポータルサイトです。`,
     author: `@tsukuba_shinkan`,
   },
   plugins: [
