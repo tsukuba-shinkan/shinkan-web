@@ -31,7 +31,8 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "lint": "eslint --ext js,jsx .",
+    "lintfix": "eslint --ext js,jsx --fix .",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
