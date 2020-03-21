@@ -16,7 +16,11 @@ const Header = ({ siteTitle }) => (
             fontWeight: `normal`,
           }}
         >
-          <img src="https://drive.google.com/uc?id=1ReaOXbZz2mHy2CKZ7cQONvot6vp3S02m" alt={`筑波大学`} id={`headerLogo`}/>
+          <img
+            src="https://drive.google.com/uc?id=1ReaOXbZz2mHy2CKZ7cQONvot6vp3S02m"
+            alt={`筑波大学`}
+            id={`headerLogo`}
+          />
           <span>新歓Web</span>
         </Link>
       </h1>
