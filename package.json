@@ -54,7 +54,7 @@
     }
   },
   "lint-staged": {
-    "*.js": ["npm run lint", "git add"],
-    "*.jsx": ["npm run lint", "git add"]
+    "*.js": ["eslint"],
+    "*.jsx": ["eslint"]
   }
 }
