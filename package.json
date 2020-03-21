@@ -22,6 +22,8 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-config-react-app": "^5.2.1",
     "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
     "prettier": "^1.19.1"
   },
   "keywords": [
@@ -36,6 +38,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
+    "precommit": "lint-staged",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "repository": {
@@ -44,5 +47,14 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit"
+    }
+  },
+  "lint-staged": {
+    "*.js": ["npm run lint", "git add"],
+    "*.jsx": ["npm run lint", "git add"]
   }
 }
