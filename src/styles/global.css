@@ -2,6 +2,16 @@
 * {
     font-family: 'Noto Sans JP', sans-serif;
 }
+
+a {
+    color: #00c1d5;
+    text-decoration: none;
+}
+
+div.row div.half {
+    width: 50%;
+    float: left;
+}
 header {
     background-color: #fff;
     height: 80px;
@@ -37,4 +47,21 @@ header div h1 img,span {
 
 header div h1 span {
     font-size: 1.2rem;
+}
+
+footer {
+    /* height: 108px; */
+    background-color: #eaeaea;
+    padding: 40px;
+    font-size: 0.8rem;
+}
+
+#footerLogo {
+    height: 48px;
+    width: auto;
+}
+
+#copyright {
+    text-align: center;
+    margin: 0;
 }
