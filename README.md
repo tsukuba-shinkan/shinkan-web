@@ -1,6 +1,6 @@
 # 筑波大学新歓Web
 [![CI status](https://github.com/tsukuba-shinkan/shinkan-web/workflows/CI/badge.svg)]()
-[![Imagine the Future](https://img.shields.io/badge/imagine--the-feature-0bf)](https://github.com/topics/imagine-the-future)
+[![Imagine the Future](https://img.shields.io/badge/imagine--the-future-0bf)](https://github.com/topics/imagine-the-future)
 
 ## Abstract
 このサイトは新型コロナウイルス感染症の影響により2020年度のサークル等の新歓活動が大幅に制限されることをうけWebページ学生委員会により製作されています。  
