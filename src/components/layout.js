@@ -47,9 +47,10 @@ const Layout = ({ children }) => {
           </div>
           <div>
             <p id="copyright">
-              © {new Date().getFullYear()}
-              {` `}
-              <a href="https://www.stb.tsukuba.ac.jp/~webgaku/" target="_blank">筑波大学Webページ学生委員会</a>
+              © {new Date().getFullYear()},{` `}
+              <a href="https://www.stb.tsukuba.ac.jp/~webgaku/" target="_blank">
+                筑波大学Webページ学生委員会
+              </a>
             </p>
           </div>
         </div>
