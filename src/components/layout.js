@@ -7,7 +7,7 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 
 import Header from "./header"
 import "./layout.css"
@@ -34,12 +34,26 @@ const Layout = ({ children }) => {
         }}
       >
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, 
-          {` `}
-          <a href="https://www.stb.tsukuba.ac.jp/~webgaku/">Student Council of Web Page, University of Tsukuba.</a>
-        </footer>
       </div>
+      <footer>
+        <div id="footerContainer" >
+          <div class="row">
+            <div class="half">
+              <Link to={/about/} >このサイトについて</Link>
+            </div>
+            <div class="half" style={{textAlign: `right`}}>
+              <img src="https://drive.google.com/uc?id=1ReaOXbZz2mHy2CKZ7cQONvot6vp3S02m" alt={`筑波大学`} id={`footerLogo`}/>
+            </div>
+          </div>
+          <div>
+            <p id="copyright">
+              © {new Date().getFullYear()}
+              {` `}
+              <a href="https://www.stb.tsukuba.ac.jp/~webgaku/" target="_blank">筑波大学Webページ学生委員会</a>
+            </p>
+          </div>
+        </div>
+      </footer>
     </>
   )
 }
