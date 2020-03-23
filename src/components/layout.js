@@ -36,19 +36,27 @@ const Layout = ({ children }) => {
         <main>{children}</main>
       </div>
       <footer>
-        <div id="footerContainer" >
+        <div id="footerContainer">
           <div class="row">
             <div class="half">
-              <Link to={/about/} >このサイトについて</Link>
+              <Link to={/about/}>このサイトについて</Link>
             </div>
-            <div class="half" style={{textAlign: `right`}}>
-              <img src="https://drive.google.com/uc?id=1ReaOXbZz2mHy2CKZ7cQONvot6vp3S02m" alt={`筑波大学`} id={`footerLogo`}/>
+            <div class="half" style={{ textAlign: `right` }}>
+              <img
+                src="https://drive.google.com/uc?id=1ReaOXbZz2mHy2CKZ7cQONvot6vp3S02m"
+                alt={`筑波大学`}
+                id={`footerLogo`}
+              />
             </div>
           </div>
           <div>
             <p id="copyright">
               © {new Date().getFullYear()},{` `}
-              <a href="https://www.stb.tsukuba.ac.jp/~webgaku/" target="_blank">
+              <a
+                href="https://www.stb.tsukuba.ac.jp/~webgaku/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 筑波大学Webページ学生委員会
               </a>
             </p>
