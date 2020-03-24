@@ -1,3 +1,5 @@
+require("dotenv").config()
+
 module.exports = {
   siteMetadata: {
     title: `筑波大学新歓Web`,
@@ -25,6 +27,14 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: "gatsby-source-shinkan-web",
+      options: {
+        fileId:
+          process.env.SRC_FILE_ID ||
+          "1r4c4E7r1PDnaf6Mk6YIS6FAOblLBiX66socla-x8ct4",
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
