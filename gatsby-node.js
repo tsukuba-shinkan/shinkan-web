@@ -16,19 +16,7 @@ exports.createPages = async ({ graphql, actions }) => {
       allShinkanWebOrg {
         edges {
           node {
-            activityIntroduce
-            activityType
-            id
-            imageUrls
-            instagram
-            name
-            otherImageUrls
-            pdfUrl
-            posterImageUrls
             primaryKey
-            twitter
-            type
-            website
           }
         }
       }
