@@ -21,15 +21,8 @@ gatsby develop
 
 ## How to Contribute
 このサイトはオープンソースにより開発されています。皆さまのコントリビューションをお待ちしております。  
-[Contribution Guide](/CONTRIBUTING.md)をご一読ください。
-
-##### 変更の反映
-upstreamに変更が加えられた場合は以下のようにしてローカルに変更を反映させてください。（毎作業ごとに行うことを推奨します。）
-```console
-git fetch upstream
-git checkout master
-git merge upstream/master
-```
+[Contribution Guide](/CONTRIBUTING.md)をご一読ください。  
+Adobe XDによるデザイン原案は[こちら](https://xd.adobe.com/view/ca957b4d-3739-4c27-566f-ddd0cf4bead8-bca4/)
 
 ## Contact
 If you want to contact us, please email to webgaku(at)stb.tsukuba.ac.jp 
