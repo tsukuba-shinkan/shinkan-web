@@ -1,3 +1,4 @@
+/* 全体 */
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap');
 * {
     font-family: 'Noto Sans JP', sans-serif;
@@ -12,6 +13,34 @@ div.row div.half {
     width: 50%;
     float: left;
 }
+
+/* トップページポスター一覧 */
+.categories ul.scrollList {
+    list-style: none;
+    /* display: grid; */
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+.categories ul.scrollList li.scrollItem {
+    padding-left: 0;
+    width: 180px;
+    height: 255px;
+    margin-right: 16px;
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.2) 1.5px 1.5px;
+}
+
+.categories ul.scrollList li.scrollItem img {
+    object-fit: cover;
+    top: 0;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+/* ヘッダー */
 header {
     background-color: #fff;
     height: 80px;
@@ -49,6 +78,7 @@ header div h1 span {
     font-size: 1.2rem;
 }
 
+/* フッター */
 footer {
     /* height: 108px; */
     background-color: #eaeaea;
