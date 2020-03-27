@@ -46,13 +46,13 @@ const IndexPage = () => {
   return (
     <Layout>
       <SEO title="ホーム" />
-      <div class="categories sports">
+      <div className="categories sports">
         <h2>体育系</h2>
         <div>
-          <ul className={"scrollList"}>
+          <ul className="scrollList">
             {data.sports.edges.map(({ node }) => {
               return (
-                <li className={"scrollItem"}>
+                <li className="scrollItem">
                   <img
                     src={node.posterImageUrls[0]}
                     alt={node.name}
@@ -65,13 +65,13 @@ const IndexPage = () => {
         </div>
       </div>
 
-      <div class="categories culture">
+      <div className="categories culture">
         <h2>文化系</h2>
         <div>
-          <ul className={"scrollList"}>
+          <ul className="scrollList">
             {data.culture.edges.map(({ node }) => {
               return (
-                <li className={"scrollItem"}>
+                <li className="scrollItem">
                   <img
                     src={node.posterImageUrls[0]}
                     alt={node.name}
@@ -83,13 +83,13 @@ const IndexPage = () => {
           </ul>
         </div>
       </div>
-      <div class="categories art">
+      <div className="categories art">
         <h2>芸術系</h2>
         <div>
           <ul className={"scrollList"}>
             {data.art.edges.map(({ node }) => {
               return (
-                <li className={"scrollItem"}>
+                <li className="scrollItem">
                   <img
                     src={node.posterImageUrls[0]}
                     alt={node.name}
@@ -101,13 +101,13 @@ const IndexPage = () => {
           </ul>
         </div>
       </div>
-      <div class="categories others">
+      <div className="categories others">
         <h2>その他</h2>
         <div>
-          <ul className={"scrollList"}>
+          <ul className="scrollList">
             {data.others.edges.map(({ node }) => {
               return (
-                <li className={"scrollItem"}>
+                <li className="scrollItem">
                   <img
                     src={node.posterImageUrls[0]}
                     alt={node.name}

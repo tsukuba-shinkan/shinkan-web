@@ -37,11 +37,11 @@ const Layout = ({ children }) => {
       </div>
       <footer>
         <div id="footerContainer">
-          <div class="row">
-            <div class="half">
+          <div className="row">
+            <div className="half">
               <Link to={/about/}>このサイトについて</Link>
             </div>
-            <div class="half" style={{ textAlign: `right` }}>
+            <div className="half" style={{ textAlign: `right` }}>
               <img
                 src="https://drive.google.com/uc?id=1ReaOXbZz2mHy2CKZ7cQONvot6vp3S02m"
                 alt={`筑波大学`}
