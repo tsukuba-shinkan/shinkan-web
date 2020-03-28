@@ -39,7 +39,9 @@ const Post = ({ data }) => {
                     src="https://icongr.am/entypo/twitter.svg?size=20&color={hex}"
                     alt="link"
                   />
-                  <a href={orgdata.twitter}>{orgdata.twitter}</a>
+                  <a href={"https://twitter.com/" + orgdata.twitter}>
+                    {orgdata.twitter}
+                  </a>
                 </span>
                 &nbsp;
               </>
@@ -51,7 +53,9 @@ const Post = ({ data }) => {
                     src="https://icongr.am/entypo/instagram.svg?size=20&color={hex}"
                     alt="link"
                   />
-                  <a href={orgdata.instagram}>{orgdata.instagram}</a>
+                  <a href={"https://instagram.com/" + orgdata.instagram}>
+                    {orgdata.instagram}
+                  </a>
                 </span>
               </>
             )}

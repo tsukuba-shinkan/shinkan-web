@@ -45,6 +45,12 @@ div.row div.half {
 .orgdata .container{
     padding: 16px;
 }
+.socialLink img {
+    margin-bottom: 0;
+}
+.socialLink img,a {
+    vertical-align: middle;
+}
 
 /* ヘッダー */
 header {
