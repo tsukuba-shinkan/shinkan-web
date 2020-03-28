@@ -23,6 +23,7 @@ div.row div.half {
     -webkit-overflow-scrolling: touch;
 }
 .categories ul.scrollList li.scrollItem {
+    vertical-align: bottom;
     padding-left: 0;
     width: 180px;
     height: 255px;
@@ -38,6 +39,11 @@ div.row div.half {
     top: 0;
     vertical-align: middle;
     overflow: hidden;
+}
+
+/* 団体個別ページ */
+.orgdata .container{
+    padding: 16px;
 }
 
 /* ヘッダー */
@@ -80,6 +86,7 @@ header div h1 span {
 
 /* フッター */
 footer {
+    clear: both;
     /* height: 108px; */
     background-color: #eaeaea;
     padding: 40px;

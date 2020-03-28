@@ -7,6 +7,16 @@
 各団体のポスター・ビラ画像及び活動内容紹介などを閲覧することができます。
 
 ## Setup Guide
+まず、このリポジトリをあなたのリポジトリにフォークしてください。その後の手順は以下のとおりです。
+
+ローカルへのクローンとupatreamの設定を行なってください。
+```console
+git clone https://github.com/{your-account}/shinkan-web.git
+git remote add upstream https://github.com/tsukuba-shinkan/shinkan-web.git
+git fetch upstream
+git checkout master
+```
+
 [Node.js](https://nodejs.org/ja/)およびnpmがインストールされていない場合はインストールしてください。
 
 ```console
@@ -23,15 +33,12 @@ gatsby develop
 
 ## How to Contribute
 このサイトはオープンソースにより開発されています。皆さまのコントリビューションをお待ちしております。  
-[Contribution Guide](/CONTRIBUTING.md)をご一読ください。
+[Contribution Guide](/CONTRIBUTING.md)をご一読ください。  
+Adobe XDによるデザイン原案は[こちら](https://xd.adobe.com/view/ca957b4d-3739-4c27-566f-ddd0cf4bead8-bca4/)
 
-##### 変更の反映
-upstreamに変更が加えられた場合は以下のようにしてローカルに変更を反映させてください。（毎作業ごとに行うことを推奨します。）
-```console
-git fetch upstream
-git checkout master
-git merge upstream/master
-```
+## References
+- [PROPOSAL.md](PROPOSAL.md) このサイトの企画書です。
+- [DATAFLOW.md](/DATAFLOW.md) 団体データの処理についての記載があります。
 
 ## Contact
 If you want to contact us, please email to webgaku(at)stb.tsukuba.ac.jp 
