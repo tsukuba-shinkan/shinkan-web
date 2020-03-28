@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery, Link } from "gatsby"
 // import { Link } from "gatsby"
 
 import Layout from "../components/layout"
@@ -14,6 +14,7 @@ const IndexPage = () => {
           node {
             posterImageUrls
             name
+            primaryKey
           }
         }
       }
@@ -22,6 +23,7 @@ const IndexPage = () => {
           node {
             posterImageUrls
             name
+            primaryKey
           }
         }
       }
@@ -30,6 +32,7 @@ const IndexPage = () => {
           node {
             posterImageUrls
             name
+            primaryKey
           }
         }
       }
@@ -38,6 +41,7 @@ const IndexPage = () => {
           node {
             posterImageUrls
             name
+            primaryKey
           }
         }
       }
@@ -53,11 +57,13 @@ const IndexPage = () => {
             {data.sports.edges.map(({ node }) => {
               return (
                 <li className="scrollItem">
-                  <img
-                    src={node.posterImageUrls[0]}
-                    alt={node.name}
-                    loading="lazy"
-                  />
+                  <Link to={"/org/" + node.primaryKey}>
+                    <img
+                      src={node.posterImageUrls[0]}
+                      alt={node.name}
+                      loading="lazy"
+                    />
+                  </Link>
                 </li>
               )
             })}
@@ -72,11 +78,13 @@ const IndexPage = () => {
             {data.culture.edges.map(({ node }) => {
               return (
                 <li className="scrollItem">
-                  <img
-                    src={node.posterImageUrls[0]}
-                    alt={node.name}
-                    loading="lazy"
-                  />
+                  <Link to={"/org/" + node.primaryKey}>
+                    <img
+                      src={node.posterImageUrls[0]}
+                      alt={node.name}
+                      loading="lazy"
+                    />
+                  </Link>
                 </li>
               )
             })}
@@ -90,11 +98,13 @@ const IndexPage = () => {
             {data.art.edges.map(({ node }) => {
               return (
                 <li className="scrollItem">
-                  <img
-                    src={node.posterImageUrls[0]}
-                    alt={node.name}
-                    loading="lazy"
-                  />
+                  <Link to={"/org/" + node.primaryKey}>
+                    <img
+                      src={node.posterImageUrls[0]}
+                      alt={node.name}
+                      loading="lazy"
+                    />
+                  </Link>
                 </li>
               )
             })}
@@ -108,11 +118,13 @@ const IndexPage = () => {
             {data.others.edges.map(({ node }) => {
               return (
                 <li className="scrollItem">
-                  <img
-                    src={node.posterImageUrls[0]}
-                    alt={node.name}
-                    loading="lazy"
-                  />
+                  <Link to={"/org/" + node.primaryKey}>
+                    <img
+                      src={node.posterImageUrls[0]}
+                      alt={node.name}
+                      loading="lazy"
+                    />
+                  </Link>
                 </li>
               )
             })}
