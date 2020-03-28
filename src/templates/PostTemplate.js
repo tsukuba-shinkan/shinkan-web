@@ -60,7 +60,14 @@ const Post = ({ data }) => {
               </>
             )}
             <h3>活動内容紹介</h3>
-            <p>{orgdata.activityIntroduce} </p>
+            <div>
+              {orgdata.activityIntroduce
+                .split("\n")
+                .filter(s => s.match(/\S+/))
+                .map(s => (
+                  <p>{s}</p>
+                ))}
+            </div>
           </div>
         </div>
       </div>
