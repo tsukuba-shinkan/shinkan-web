@@ -39,13 +39,13 @@ const Layout = ({ children }) => {
         <div id="footerContainer">
           <div className="row">
             <div className="half">
-              <Link to={/about/}>このサイトについて</Link>
+              <Link to="/about">このサイトについて</Link>
             </div>
             <div className="half" style={{ textAlign: `right` }}>
               <img
                 src="https://drive.google.com/uc?id=1ReaOXbZz2mHy2CKZ7cQONvot6vp3S02m"
-                alt={`筑波大学`}
-                id={`footerLogo`}
+                alt="筑波大学"
+                id="footerLogo"
               />
             </div>
           </div>
