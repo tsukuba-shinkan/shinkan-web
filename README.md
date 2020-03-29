@@ -24,7 +24,9 @@ git checkout master
 npm install
 
 # 開発ビルドの開始
-gatsby develop
+npx gatsby develop
+# or
+npm run develop
 ```
 
 プロジェクトは`.env`ファイルを自動的に読み込みます。`.template.env`をコピーして個人用の`.env`を作成することで、環境変数から注入可能な値を適宜変更できます。
