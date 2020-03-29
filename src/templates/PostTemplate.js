@@ -8,6 +8,7 @@ import SEO from "../components/seo"
 
 const Post = ({ data }) => {
   const orgdata = data.shinkanWebOrg
+  console.log(orgdata.otherImageUrls)
   return (
     <Layout>
       <SEO title={orgdata.name} />
@@ -20,14 +21,21 @@ const Post = ({ data }) => {
         <div className="half">
           <div className="container">
             <h2>{orgdata.name}</h2>
+            <hr />
             {orgdata.website !== "" && (
               <>
                 <span className="socialLink">
                   <img
-                    src="https://icongr.am/entypo/link.svg?size=20&color={hex}"
+                    src="https://icongr.am/entypo/link.svg?size=20&amp;color=aaaaaa"
                     alt="link"
                   />
-                  <a href={orgdata.website}>{orgdata.website}</a>
+                  <a
+                    href={orgdata.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {orgdata.website}
+                  </a>
                 </span>
                 <br />
               </>
@@ -36,10 +44,14 @@ const Post = ({ data }) => {
               <>
                 <span className="socialLink">
                   <img
-                    src="https://icongr.am/entypo/twitter.svg?size=20&color={hex}"
+                    src="https://icongr.am/entypo/twitter.svg?size=20&amp;color=aaaaaa"
                     alt="link"
                   />
-                  <a href={"https://twitter.com/" + orgdata.twitter}>
+                  <a
+                    href={"https://twitter.com/" + orgdata.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {orgdata.twitter}
                   </a>
                 </span>
@@ -50,17 +62,20 @@ const Post = ({ data }) => {
               <>
                 <span className="socialLink">
                   <img
-                    src="https://icongr.am/entypo/instagram.svg?size=20&color={hex}"
+                    src="https://icongr.am/entypo/instagram.svg?size=20&amp;color=aaaaaa"
                     alt="link"
                   />
-                  <a href={"https://instagram.com/" + orgdata.instagram}>
+                  <a
+                    href={"https://instagram.com/" + orgdata.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {orgdata.instagram}
                   </a>
                 </span>
               </>
             )}
-            <h3>活動内容紹介</h3>
-            <div>
+            <div className="activityIntroduce">
               {orgdata.activityIntroduce
                 .split("\n")
                 .filter(s => s.match(/\S+/))
@@ -71,6 +86,16 @@ const Post = ({ data }) => {
           </div>
         </div>
       </div>
+      {orgdata.otherImageUrls.length >= 1 && (
+        <>
+          <div className="otherImages">
+            {orgdata.otherImageUrls.map(otherImageUrl => {
+              console.log(otherImageUrl)
+              return <img src={otherImageUrl} alt="" />
+            })}
+          </div>
+        </>
+      )}
     </Layout>
   )
 }

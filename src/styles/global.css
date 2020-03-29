@@ -45,11 +45,31 @@ div.row div.half {
 .orgdata .container{
     padding: 16px;
 }
+.orgdata h2 {
+    margin-bottom: 4px;
+}
+.orgdata hr {
+    margin-bottom: 4px;
+}
 .socialLink img {
     margin-bottom: 0;
 }
 .socialLink img,a {
     vertical-align: middle;
+}
+.activityIntroduce {
+    margin-top: 12px;
+}
+.otherImages {
+    clear: both;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+.otherImages img {
+    vertical-align: middle;
+    max-width: 200px;
+    padding-right: 8px;
 }
 
 /* ヘッダー */
