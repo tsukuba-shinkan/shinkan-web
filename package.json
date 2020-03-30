@@ -28,7 +28,11 @@
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
-    "prettier": "^1.19.1"
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.19.1",
+    "stylelint": "^13.2.1",
+    "stylelint-config-recess-order": "^2.0.4",
+    "stylelint-config-standard": "^20.0.0"
   },
   "keywords": [
     "gatsby"
@@ -37,8 +41,12 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "lint": "eslint --ext js,jsx .",
-    "lintfix": "eslint --ext js,jsx --fix .",
+    "lint": "run-s lint:*",
+    "lintfix": "run-s lintfix:*",
+    "lint:js": "eslint --ext js,jsx .",
+    "lint:style": "stylelint src/**/*.scss",
+    "lintfix:js": "eslint --ext js,jsx . --fix",
+    "lintfix:style": "stylelint src/**/*.scss --fix",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
@@ -63,6 +71,9 @@
     ],
     "*.jsx": [
       "eslint"
+    ],
+    "*.scss": [
+      "stylelint"
     ]
   }
 }
