@@ -1,0 +1,150 @@
+/* 全体 */
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap');
+
+* {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+a {
+  color: #00c1d5;
+  text-decoration: none;
+}
+
+div.row {
+  div.half {
+    float: left;
+    width: 50%;
+  }
+}
+
+/* トップページポスター一覧 */
+.categories {
+  ul.scrollList {
+    /* display: grid; */
+    overflow-x: auto;
+    white-space: nowrap;
+    list-style: none;
+    -webkit-overflow-scrolling: touch;
+
+    li.scrollItem {
+      display: inline-block;
+      width: 180px;
+      height: 255px;
+      padding-left: 0;
+      margin-right: 16px;
+      vertical-align: bottom;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: rgba(0, 0, 0, 0.2) 1.5px 1.5px;
+
+      img {
+        top: 0;
+        overflow: hidden;
+        vertical-align: middle;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+/* 団体個別ページ */
+.orgdata {
+  .container {
+    padding: 16px;
+  }
+
+  h2 {
+    margin-bottom: 4px;
+  }
+
+  hr {
+    margin-bottom: 4px;
+  }
+}
+
+.socialLink {
+  img {
+    margin-bottom: 0;
+  }
+
+  img,
+  a {
+    vertical-align: middle;
+  }
+}
+
+.activityIntroduce {
+  margin-top: 12px;
+}
+
+.otherImages {
+  overflow-x: auto;
+  clear: both;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+
+  img {
+    max-width: 200px;
+    padding-right: 8px;
+    vertical-align: middle;
+  }
+}
+
+/* ヘッダー */
+header {
+  height: 80px;
+  background-color: #fff;
+  box-shadow: 0 1.5px 1px 1px rgba(0, 0, 0, 0.5);
+
+  div {
+    max-width: 960px;
+    height: 80px;
+    padding: 16px;
+    margin: 0 auto;
+
+    h1 {
+      height: 48px;
+
+      a {
+        top: 0;
+        display: inline-block;
+        height: 48px;
+      }
+
+      img,
+      span {
+        vertical-align: middle;
+      }
+
+      span {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  #headerLogo {
+    width: auto;
+    height: 48px;
+    margin: 0 16px 0 0;
+  }
+}
+
+/* フッター */
+footer {
+  padding: 40px;
+  clear: both;
+  font-size: 0.8rem;
+
+  /* height: 108px; */
+  background-color: #eaeaea;
+
+  #footerLogo {
+    width: auto;
+    height: 48px;
+  }
+
+  #copyright {
+    margin: 0;
+    text-align: center;
+  }
+}
