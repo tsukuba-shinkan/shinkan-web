@@ -9,7 +9,7 @@
 ## Setup Guide
 まず、このリポジトリをあなたのリポジトリにフォークしてください。その後の手順は以下のとおりです。
 
-ローカルへのクローンとupatreamの設定を行なってください。
+ローカルへのクローンとupstreamの設定を行なってください。
 ```console
 git clone https://github.com/{your-account}/shinkan-web.git
 git remote add upstream https://github.com/tsukuba-shinkan/shinkan-web.git
