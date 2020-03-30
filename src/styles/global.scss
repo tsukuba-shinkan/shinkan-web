@@ -1,144 +1,150 @@
 /* 全体 */
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap');
+
 * {
-    font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
 a {
-    color: #00c1d5;
-    text-decoration: none;
+  color: #00c1d5;
+  text-decoration: none;
 }
 
 div.row {
-    div.half {
-        width: 50%;
-        float: left;
-    }
+  div.half {
+    float: left;
+    width: 50%;
+  }
 }
 
 /* トップページポスター一覧 */
-.categories{
-    ul.scrollList {
-        list-style: none;
-        /* display: grid; */
-        overflow-x: auto;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
+.categories {
+  ul.scrollList {
+    /* display: grid; */
+    overflow-x: auto;
+    white-space: nowrap;
+    list-style: none;
+    -webkit-overflow-scrolling: touch;
 
-        li.scrollItem {
-            vertical-align: bottom;
-            padding-left: 0;
-            width: 180px;
-            height: 255px;
-            margin-right: 16px;
-            display: inline-block;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: rgba(0, 0, 0, 0.2) 1.5px 1.5px;
+    li.scrollItem {
+      display: inline-block;
+      width: 180px;
+      height: 255px;
+      padding-left: 0;
+      margin-right: 16px;
+      vertical-align: bottom;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: rgba(0, 0, 0, 0.2) 1.5px 1.5px;
 
-            img {
-                object-fit: cover;
-                top: 0;
-                vertical-align: middle;
-                overflow: hidden;
-            }
-        }
+      img {
+        top: 0;
+        overflow: hidden;
+        vertical-align: middle;
+        object-fit: cover;
+      }
     }
+  }
 }
 
 /* 団体個別ページ */
-.orgdata{
-    .container{
-        padding: 16px;
-    }
+.orgdata {
+  .container {
+    padding: 16px;
+  }
 
-    h2 {
-        margin-bottom: 4px;
-    }
+  h2 {
+    margin-bottom: 4px;
+  }
 
-    hr {
-        margin-bottom: 4px;
-    }
+  hr {
+    margin-bottom: 4px;
+  }
 }
 
 .socialLink {
-    img {
-        margin-bottom: 0;
-    }
-    img, a {
-        vertical-align: middle;
-    }
+  img {
+    margin-bottom: 0;
+  }
+
+  img,
+  a {
+    vertical-align: middle;
+  }
 }
 
 .activityIntroduce {
-    margin-top: 12px;
+  margin-top: 12px;
 }
-.otherImages {
-    clear: both;
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
 
-    img {
-        vertical-align: middle;
-        max-width: 200px;
-        padding-right: 8px;
-    }
+.otherImages {
+  overflow-x: auto;
+  clear: both;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+
+  img {
+    max-width: 200px;
+    padding-right: 8px;
+    vertical-align: middle;
+  }
 }
 
 /* ヘッダー */
 header {
-    background-color: #fff;
+  height: 80px;
+  background-color: #fff;
+  box-shadow: 0 1.5px 1px 1px rgba(0, 0, 0, 0.5);
+
+  div {
+    max-width: 960px;
     height: 80px;
-    box-shadow: 0 1.5px 1px 1px rgba(0, 0, 0, 0.5);
+    padding: 16px;
+    margin: 0 auto;
 
-    div {
-        height: 80px;
-        margin: 0 auto;
-        max-width: 960px;
-        padding: 16px;
+    h1 {
+      height: 48px;
 
-        h1 {
-            height: 48px;
-
-            a {
-                display: inline-block;
-                height: 48px;
-                top: 0;
-            }
-
-            img,span {
-                vertical-align: middle;
-            }
-
-            span {
-                font-size: 1.2rem;
-            }
-        }
-    }
-
-    #headerLogo {
-        margin: 0 16px 0 0;
+      a {
+        top: 0;
+        display: inline-block;
         height: 48px;
-        width: auto;
+      }
+
+      img,
+      span {
+        vertical-align: middle;
+      }
+
+      span {
+        font-size: 1.2rem;
+      }
     }
+  }
+
+  #headerLogo {
+    width: auto;
+    height: 48px;
+    margin: 0 16px 0 0;
+  }
 }
 
 /* フッター */
 footer {
-    clear: both;
-    /* height: 108px; */
-    background-color: #eaeaea;
-    padding: 40px;
-    font-size: 0.8rem;
+  padding: 40px;
+  clear: both;
+  font-size: 0.8rem;
 
-    #footerLogo {
-        height: 48px;
-        width: auto;
-    }
+  /* height: 108px; */
+  background-color: #eaeaea;
 
-    #copyright {
-        text-align: center;
-        margin: 0;
-    }
+  #footerLogo {
+    width: auto;
+    height: 48px;
+  }
+
+  #copyright {
+    margin: 0;
+    text-align: center;
+  }
 }
