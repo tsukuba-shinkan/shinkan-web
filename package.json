@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "shinkan-web",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "筑波大学のサークル等の団体情報を紹介するポータルサイトです。",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Student Council of WebPage, University of Tsukuba <webgaku@stb.tsukuba.ac.jp>",
   "dependencies": {
     "@tsukuba-shinkan/gatsby-source-shinkan-web": "file:plugins/gatsby-source-shinkan-web",
     "dotenv": "^8.2.0",
@@ -35,7 +35,7 @@
     "stylelint-config-standard": "^20.0.0"
   },
   "keywords": [
-    "gatsby"
+    "imagine-the-future"
   ],
   "license": "MIT",
   "scripts": {
@@ -55,10 +55,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/tsukuba-shinkan/shinkan-web"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/tsukuba-shinkan/shinkan-web/issues"
   },
   "husky": {
     "hooks": {
