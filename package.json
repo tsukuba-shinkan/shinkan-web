@@ -44,9 +44,9 @@
     "lint": "run-s lint:*",
     "lintfix": "run-s lintfix:*",
     "lint:js": "eslint --ext js,jsx .",
-    "lint:style": "stylelint src/**/*.css",
+    "lint:style": "stylelint src/**/*.scss",
     "lintfix:js": "eslint --ext js,jsx . --fix",
-    "lintfix:style": "stylelint src/**/*.css --fix",
+    "lintfix:style": "stylelint src/**/*.scss --fix",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
@@ -72,7 +72,7 @@
     "*.jsx": [
       "eslint"
     ],
-    "*.css": [
+    "*.scss": [
       "stylelint"
     ]
   }
