@@ -26,22 +26,14 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-      </div>
+      <main>{children}</main>
       <footer>
         <div id="footerContainer">
           <div className="row">
-            <div className="half">
+            <div>
               <Link to="/about">このサイトについて</Link>
             </div>
-            <div className="half" style={{ textAlign: `right` }}>
+            <div>
               <img
                 src="https://drive.google.com/uc?id=1ReaOXbZz2mHy2CKZ7cQONvot6vp3S02m"
                 alt="筑波大学"

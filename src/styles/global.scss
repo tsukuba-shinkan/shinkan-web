@@ -17,6 +17,12 @@ div.row {
   }
 }
 
+main {
+  max-width: 960px;
+  padding: 0 1rem 1.5rem;
+  margin: 0 auto;
+}
+
 /* トップページポスター一覧 */
 .categories {
   ul.scrollList {
@@ -104,11 +110,15 @@ header {
 
     h1 {
       height: 48px;
+      margin: 0;
 
       a {
         top: 0;
         display: inline-block;
         height: 48px;
+        font-weight: normal;
+        color: black;
+        text-decoration: none;
       }
 
       img,
@@ -132,15 +142,23 @@ header {
 /* フッター */
 footer {
   padding: 40px;
-  clear: both;
   font-size: 0.8rem;
 
   /* height: 108px; */
   background-color: #eaeaea;
 
+  .row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 25px;
+  }
+
   #footerLogo {
     width: auto;
     height: 48px;
+    margin: 0;
   }
 
   #copyright {

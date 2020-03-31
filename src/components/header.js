@@ -7,15 +7,8 @@ import React from "react"
 const Header = ({ siteTitle }) => (
   <header>
     <div>
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `black`,
-            textDecoration: `none`,
-            fontWeight: `normal`,
-          }}
-        >
+      <h1>
+        <Link to="/">
           <img
             src="https://drive.google.com/uc?id=1ReaOXbZz2mHy2CKZ7cQONvot6vp3S02m"
             alt={`筑波大学`}
