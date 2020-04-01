@@ -34,3 +34,5 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 }
+
+const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
