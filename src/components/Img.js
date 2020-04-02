@@ -20,6 +20,8 @@ export default function({ url }) {
       }
     }
   `)
-  const imageNode = allImages.allImageSharp.nodes.find(e => e.parent.url == url)
+  const imageNode = allImages.allImageSharp.nodes.find(
+    e => e.parent.url === url
+  )
   return <Img fluid={imageNode.fluid} />
 }
