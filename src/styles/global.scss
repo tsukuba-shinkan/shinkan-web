@@ -31,28 +31,14 @@ img {
 .categories {
   ul.scrollList {
     /* display: grid; */
-    overflow-x: auto;
+    overflow-x: scroll;
     white-space: nowrap;
     list-style: none;
     -webkit-overflow-scrolling: touch;
 
     li.scrollItem {
       display: inline-block;
-      width: 180px;
-      height: 255px;
-      padding-left: 0;
-      margin-right: 16px;
-      vertical-align: bottom;
       background-color: #fff;
-      border-radius: 10px;
-      box-shadow: rgba(0, 0, 0, 0.2) 1.5px 1.5px;
-
-      img {
-        top: 0;
-        overflow: hidden;
-        vertical-align: middle;
-        object-fit: cover;
-      }
     }
   }
 }
@@ -92,12 +78,6 @@ img {
   clear: both;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
-
-  img {
-    max-width: 200px;
-    padding-right: 8px;
-    vertical-align: middle;
-  }
 }
 
 /* ヘッダー */

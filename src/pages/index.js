@@ -3,7 +3,8 @@ import { graphql, useStaticQuery, Link } from "gatsby"
 // import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-// import Image from "../components/image"
+
+import SmallPoster from "../components/SmallPoster"
 import SEO from "../components/seo"
 
 const IndexPage = () => {
@@ -58,11 +59,7 @@ const IndexPage = () => {
               return (
                 <li className="scrollItem">
                   <Link to={"/org/" + node.primaryKey}>
-                    <img
-                      src={node.posterImageUrls[0]}
-                      alt={node.name}
-                      loading="lazy"
-                    />
+                    <SmallPoster url={node.posterImageUrls[0]} />
                   </Link>
                 </li>
               )
@@ -79,11 +76,7 @@ const IndexPage = () => {
               return (
                 <li className="scrollItem">
                   <Link to={"/org/" + node.primaryKey}>
-                    <img
-                      src={node.posterImageUrls[0]}
-                      alt={node.name}
-                      loading="lazy"
-                    />
+                    <SmallPoster url={node.posterImageUrls[0]} />
                   </Link>
                 </li>
               )
@@ -99,11 +92,7 @@ const IndexPage = () => {
               return (
                 <li className="scrollItem">
                   <Link to={"/org/" + node.primaryKey}>
-                    <img
-                      src={node.posterImageUrls[0]}
-                      alt={node.name}
-                      loading="lazy"
-                    />
+                    <SmallPoster url={node.posterImageUrls[0]} />
                   </Link>
                 </li>
               )
@@ -119,11 +108,7 @@ const IndexPage = () => {
               return (
                 <li className="scrollItem">
                   <Link to={"/org/" + node.primaryKey}>
-                    <img
-                      src={node.posterImageUrls[0]}
-                      alt={node.name}
-                      loading="lazy"
-                    />
+                    <SmallPoster url={node.posterImageUrls[0]} />
                   </Link>
                 </li>
               )

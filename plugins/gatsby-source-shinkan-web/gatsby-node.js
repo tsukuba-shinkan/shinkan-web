@@ -68,11 +68,6 @@ exports.sourceNodes = async (
             createNode: actions.createNode,
             createNodeId: createNodeId,
           })
-          await actions.createNodeField({
-            node: fileNode,
-            name: "origUrl",
-            value: url,
-          })
           return fileNode
         })
       )
@@ -86,11 +81,6 @@ exports.sourceNodes = async (
             createNode: actions.createNode,
             createNodeId: createNodeId,
           })
-          await actions.createNodeField({
-            node: fileNode,
-            name: "origUrl",
-            value: url,
-          })
           return fileNode
         })
       )
@@ -103,11 +93,6 @@ exports.sourceNodes = async (
             store,
             createNode: actions.createNode,
             createNodeId: createNodeId,
-          })
-          await actions.createNodeField({
-            node: fileNode,
-            name: "origUrl",
-            value: url,
           })
           return fileNode
         })

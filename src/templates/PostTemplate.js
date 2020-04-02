@@ -1,10 +1,9 @@
 import React from "react"
 import { graphql } from "gatsby"
 // import { Link } from "gatsby"
-import Img from "gatsby-image"
-
+import BigImg from "../components/BigImg"
+import OtherImg from "../components/OtherImg"
 import Layout from "../components/layout"
-// import Image from "../components/image"
 import SEO from "../components/seo"
 
 const Post = ({ data }) => {
@@ -17,7 +16,7 @@ const Post = ({ data }) => {
       <div className="row orgdata">
         <div className="half">
           <div className="container">
-            <img src={orgdata.posterImageUrls[0]} alt={orgdata.name} />
+            <BigImg url={orgdata.posterImageUrls[0]} />
           </div>
         </div>
         <div className="half">
@@ -92,8 +91,7 @@ const Post = ({ data }) => {
         <>
           <div className="otherImages">
             {orgdata.otherImageUrls.map(otherImageUrl => {
-              console.log(otherImageUrl)
-              return <img src={otherImageUrl} alt="" />
+              return <OtherImg url={otherImageUrl} />
             })}
           </div>
         </>
