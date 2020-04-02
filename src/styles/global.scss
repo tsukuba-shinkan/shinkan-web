@@ -20,6 +20,15 @@ img {
   max-width: 100%;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+
+  .half {
+    width: 50%;
+  }
+}
+
 /* トップページポスター一覧 */
 .categories {
   ul.scrollList {
