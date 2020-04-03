@@ -1,13 +1,15 @@
 module.exports = {
   parserOptions: {
-    "ecmaVersion": 9,
+    "ecmaVersion": 2019,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true,
     }
   },
   env: {
-    node: true
+    node: true,
+    browser: true,
+    es6: true
   },
   extends: [
     "eslint:recommended",
