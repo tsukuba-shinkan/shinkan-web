@@ -44,7 +44,7 @@ const IndexPage = () => {
 
               <div // スマホ用
                 className="org-list__item__sp-caption"
-                onClick={e => {
+                onClick={() => {
                   if (lastTouchedItem === org.primaryKey)
                     navigate(`/org/${org.primaryKey}`)
                   setLastTouchedItem(org.primaryKey)
