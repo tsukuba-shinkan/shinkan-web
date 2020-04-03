@@ -10,21 +10,21 @@ a {
   text-decoration: none;
 }
 
-div.row {
-  div.half {
-    float: left;
-    width: 50%;
-  }
-}
-
 main {
-  max-width: 960px;
-  padding: 0 1rem 1.5rem;
   margin: 0 auto;
 }
 
 img {
   max-width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+
+  .half {
+    width: 50%;
+  }
 }
 
 /* トップページポスター一覧 */
