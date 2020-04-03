@@ -114,27 +114,22 @@ header {
     padding: 16px;
     margin: 0 auto;
 
-    h1 {
+    a {
+      top: 0;
+      display: inline-block;
       height: 48px;
-      margin: 0;
+      font-weight: normal;
+      color: black;
+      text-decoration: none;
+    }
 
-      a {
-        top: 0;
-        display: inline-block;
-        height: 48px;
-        font-weight: normal;
-        color: black;
-        text-decoration: none;
-      }
+    img,
+    span {
+      vertical-align: middle;
+    }
 
-      img,
-      span {
-        vertical-align: middle;
-      }
-
-      span {
-        font-size: 1.2rem;
-      }
+    span {
+      font-size: 1.2rem;
     }
   }
 
