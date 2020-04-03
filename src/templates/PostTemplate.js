@@ -8,7 +8,6 @@ import SEO from "../components/seo"
 
 const Post = ({ data }) => {
   const orgdata = data.shinkanWebOrg
-  console.log(orgdata.otherImageUrls)
   return (
     <Layout>
       <SEO title={orgdata.name} />
@@ -80,6 +79,7 @@ const Post = ({ data }) => {
                 .split("\n")
                 .filter(s => s.match(/\S+/))
                 .map(s => (
+                  // eslint-disable-next-line react/jsx-key
                   <p>{s}</p>
                 ))}
             </div>
@@ -89,10 +89,9 @@ const Post = ({ data }) => {
       {orgdata.otherImageUrls.length >= 1 && (
         <>
           <div className="otherImages">
-            {orgdata.otherImageUrls.map(otherImageUrl => {
-              console.log(otherImageUrl)
-              return <img src={otherImageUrl} alt="" />
-            })}
+            {orgdata.otherImageUrls.map(otherImageUrl => (
+              <img src={otherImageUrl} alt="" key={otherImageUrl} />
+            ))}
           </div>
         </>
       )}

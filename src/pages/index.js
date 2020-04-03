@@ -54,19 +54,17 @@ const IndexPage = () => {
         <h2>体育系</h2>
         <div>
           <ul className="scrollList">
-            {data.sports.edges.map(({ node }) => {
-              return (
-                <li className="scrollItem">
-                  <Link to={"/org/" + node.primaryKey}>
-                    <img
-                      src={node.posterImageUrls[0]}
-                      alt={node.name}
-                      loading="lazy"
-                    />
-                  </Link>
-                </li>
-              )
-            })}
+            {data.sports.edges.map(({ node }) => (
+              <li className="scrollItem" key={node.primaryKey}>
+                <Link to={"/org/" + node.primaryKey}>
+                  <img
+                    src={node.posterImageUrls[0]}
+                    alt={node.name}
+                    loading="lazy"
+                  />
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
@@ -75,19 +73,17 @@ const IndexPage = () => {
         <h2>文化系</h2>
         <div>
           <ul className="scrollList">
-            {data.culture.edges.map(({ node }) => {
-              return (
-                <li className="scrollItem">
-                  <Link to={"/org/" + node.primaryKey}>
-                    <img
-                      src={node.posterImageUrls[0]}
-                      alt={node.name}
-                      loading="lazy"
-                    />
-                  </Link>
-                </li>
-              )
-            })}
+            {data.culture.edges.map(({ node }) => (
+              <li className="scrollItem" key={node.primaryKey}>
+                <Link to={"/org/" + node.primaryKey}>
+                  <img
+                    src={node.posterImageUrls[0]}
+                    alt={node.name}
+                    loading="lazy"
+                  />
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
@@ -95,19 +91,17 @@ const IndexPage = () => {
         <h2>芸術系</h2>
         <div>
           <ul className={"scrollList"}>
-            {data.art.edges.map(({ node }) => {
-              return (
-                <li className="scrollItem">
-                  <Link to={"/org/" + node.primaryKey}>
-                    <img
-                      src={node.posterImageUrls[0]}
-                      alt={node.name}
-                      loading="lazy"
-                    />
-                  </Link>
-                </li>
-              )
-            })}
+            {data.art.edges.map(({ node }) => (
+              <li className="scrollItem" key={node.primaryKey}>
+                <Link to={"/org/" + node.primaryKey}>
+                  <img
+                    src={node.posterImageUrls[0]}
+                    alt={node.name}
+                    loading="lazy"
+                  />
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
@@ -115,19 +109,17 @@ const IndexPage = () => {
         <h2>その他</h2>
         <div>
           <ul className="scrollList">
-            {data.others.edges.map(({ node }) => {
-              return (
-                <li className="scrollItem">
-                  <Link to={"/org/" + node.primaryKey}>
-                    <img
-                      src={node.posterImageUrls[0]}
-                      alt={node.name}
-                      loading="lazy"
-                    />
-                  </Link>
-                </li>
-              )
-            })}
+            {data.others.edges.map(({ node }) => (
+              <li className="scrollItem" key={node.primaryKey}>
+                <Link to={"/org/" + node.primaryKey}>
+                  <img
+                    src={node.posterImageUrls[0]}
+                    alt={node.name}
+                    loading="lazy"
+                  />
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

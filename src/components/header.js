@@ -1,10 +1,8 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
-// import Image from "../components/image"
-// import Logo from "../components/logo"
 
-const Header = ({ siteTitle }) => (
+const Header = () => (
   <header>
     <div>
       <h1>
