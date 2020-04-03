@@ -5,6 +5,12 @@ module.exports = {
   ],
   rules: {
     "indentation": 2,
-    "no-descending-specificity": null
+    "no-descending-specificity": null,
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["include","mixin","each"]
+      }
+    ]
   }
 }

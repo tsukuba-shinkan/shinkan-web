@@ -1,47 +1,23 @@
-import React from "react"
-import { graphql, useStaticQuery, Link } from "gatsby"
-// import { Link } from "gatsby"
+import React, { useState } from "react"
+import { graphql, useStaticQuery, Link, navigate } from "gatsby"
+import "./index.scss"
 
 import Layout from "../components/layout"
 // import Image from "../components/image"
 import SEO from "../components/seo"
 
 const IndexPage = () => {
-  const data = useStaticQuery(graphql`
+  const [lastTouchedItem, setLastTouchedItem] = useState(null)
+  const { orgs } = useStaticQuery(graphql`
     {
-      sports: allShinkanWebOrg(filter: { activityType: { eq: "体育系" } }) {
+      orgs: allShinkanWebOrg {
         edges {
           node {
             posterImageUrls
             name
             primaryKey
-          }
-        }
-      }
-      culture: allShinkanWebOrg(filter: { activityType: { eq: "文化系" } }) {
-        edges {
-          node {
-            posterImageUrls
-            name
-            primaryKey
-          }
-        }
-      }
-      art: allShinkanWebOrg(filter: { activityType: { eq: "芸術系" } }) {
-        edges {
-          node {
-            posterImageUrls
-            name
-            primaryKey
-          }
-        }
-      }
-      others: allShinkanWebOrg(filter: { activityType: { eq: "その他" } }) {
-        edges {
-          node {
-            posterImageUrls
-            name
-            primaryKey
+            activityType
+            activityIntroduce
           }
         }
       }
@@ -50,78 +26,40 @@ const IndexPage = () => {
   return (
     <Layout>
       <SEO title="ホーム" />
-      <div className="categories sports">
-        <h2>体育系</h2>
-        <div>
-          <ul className="scrollList">
-            {data.sports.edges.map(({ node }) => (
-              <li className="scrollItem" key={node.primaryKey}>
-                <Link to={"/org/" + node.primaryKey}>
-                  <img
-                    src={node.posterImageUrls[0]}
-                    alt={node.name}
-                    loading="lazy"
-                  />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <div className="page--index">
+        <ul className="org-list">
+          {orgs.edges.map(({ node: org }) => (
+            <li className="org-list__item" key={org.primaryKey}>
+              <Link to={`/org/${org.primaryKey}`}>
+                <figure className="org-list__item__poster">
+                  <img src={org.posterImageUrls[0]} alt="" />
+                  <figcaption>
+                    <h2 className="org-list__item__name">{org.name}</h2>
+                    <p className="org-list__item__activity-introduce">
+                      {org.activityIntroduce.substr(0, 100) + "..."}
+                    </p>
+                  </figcaption>
+                </figure>
+              </Link>
 
-      <div className="categories culture">
-        <h2>文化系</h2>
-        <div>
-          <ul className="scrollList">
-            {data.culture.edges.map(({ node }) => (
-              <li className="scrollItem" key={node.primaryKey}>
-                <Link to={"/org/" + node.primaryKey}>
-                  <img
-                    src={node.posterImageUrls[0]}
-                    alt={node.name}
-                    loading="lazy"
-                  />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      <div className="categories art">
-        <h2>芸術系</h2>
-        <div>
-          <ul className={"scrollList"}>
-            {data.art.edges.map(({ node }) => (
-              <li className="scrollItem" key={node.primaryKey}>
-                <Link to={"/org/" + node.primaryKey}>
-                  <img
-                    src={node.posterImageUrls[0]}
-                    alt={node.name}
-                    loading="lazy"
-                  />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      <div className="categories others">
-        <h2>その他</h2>
-        <div>
-          <ul className="scrollList">
-            {data.others.edges.map(({ node }) => (
-              <li className="scrollItem" key={node.primaryKey}>
-                <Link to={"/org/" + node.primaryKey}>
-                  <img
-                    src={node.posterImageUrls[0]}
-                    alt={node.name}
-                    loading="lazy"
-                  />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+              <div // スマホ用
+                className="org-list__item__sp-caption"
+                onClick={e => {
+                  if (lastTouchedItem === org.primaryKey)
+                    navigate(`/org/${org.primaryKey}`)
+                  setLastTouchedItem(org.primaryKey)
+                }}
+              >
+                <div className="org-list__item__sp-caption__name">
+                  {org.name}
+                </div>
+                <div className="org-list__item__sp-caption__activity-introduce">
+                  {org.activityIntroduce.substr(0, 100) + "..."}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </Layout>
   )

@@ -34,16 +34,22 @@ const Layout = ({ children }) => {
               <Link to="/about">このサイトについて</Link>
             </div>
             <div>
-              <img
-                src="https://drive.google.com/uc?id=1ReaOXbZz2mHy2CKZ7cQONvot6vp3S02m"
-                alt="筑波大学"
-                id="footerLogo"
-              />
+              <a
+                href="http://www.tsukuba.ac.jp/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="https://drive.google.com/uc?id=1ReaOXbZz2mHy2CKZ7cQONvot6vp3S02m"
+                  alt="筑波大学"
+                  id="footerLogo"
+                />
+              </a>
             </div>
           </div>
           <div>
             <p id="copyright">
-              © {new Date().getFullYear()},{` `}
+              © 2020 &nbsp;
               <a
                 href="https://www.stb.tsukuba.ac.jp/~webgaku/"
                 target="_blank"
