@@ -24,7 +24,7 @@ module.exports = {
   rules: {
     "react/prop-types": "off",
     "eqeqeq": "error",
-    "no-console": "error",
+    "no-console": "warn",
     "prettier/prettier": [
       "error",
       {
