@@ -5,7 +5,7 @@ import React from "react"
 // import Logo from "../components/logo"
 
 const Header = ({ siteTitle }) => (
-  <header>
+  <header className="site-header">
     <div>
       <Link to="/">
         <img

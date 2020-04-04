@@ -103,7 +103,7 @@ img {
 }
 
 /* ヘッダー */
-header {
+.site-header {
   height: 80px;
   background-color: #fff;
   box-shadow: 0 1.5px 1px 1px rgba(0, 0, 0, 0.5);
@@ -141,7 +141,7 @@ header {
 }
 
 /* フッター */
-footer {
+.site-footer {
   position: absolute;
   right: 0;
   left: 0;
