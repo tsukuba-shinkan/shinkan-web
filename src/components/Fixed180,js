@@ -1,6 +1,6 @@
-import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
+import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
+import Img from "gatsby-image";
 
 export default function({ url }) {
   const allImages = useStaticQuery(graphql`
@@ -8,7 +8,7 @@ export default function({ url }) {
       allImageSharp {
         nodes {
           id
-          fixed(width: 200) {
+          fixed(width: 180) {
             ...GatsbyImageSharpFixed
           }
           parent {
@@ -19,9 +19,9 @@ export default function({ url }) {
         }
       }
     }
-  `)
+  `);
   const imageNode = allImages.allImageSharp.nodes.find(
-    e => e.parent.url === url
-  )
-  return <Img fixed={imageNode.fixed} />
+    e => e.parent.url == url
+  );
+  return <Img fixed={imageNode.fixed} />;
 }

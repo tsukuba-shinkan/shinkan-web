@@ -1,8 +1,8 @@
 import React from "react"
 import { graphql } from "gatsby"
 // import { Link } from "gatsby"
-import BigImg from "../components/BigImg"
-import OtherImg from "../components/OtherImg"
+import Fluid700 from "../components/Fluid700"
+import Fixed200 from "../components/Fixed200"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
@@ -16,7 +16,7 @@ const Post = ({ data }) => {
       <div className="row orgdata">
         <div className="half">
           <div className="container">
-            <BigImg url={orgdata.posterImageUrls[0]} />
+            <Fluid700 url={orgdata.posterImageUrls[0]} />
           </div>
         </div>
         <div className="half">
@@ -91,7 +91,7 @@ const Post = ({ data }) => {
         <>
           <div className="otherImages">
             {orgdata.otherImageUrls.map(otherImageUrl => {
-              return <OtherImg url={otherImageUrl} />
+              return <Fixed200 url={otherImageUrl} />
             })}
           </div>
         </>

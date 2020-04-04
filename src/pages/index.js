@@ -4,7 +4,7 @@ import "./index.scss"
 
 import Layout from "../components/layout"
 
-import SmallPoster from "../components/SmallPoster"
+import Fixed200 from "../components/Fixed200"
 import SEO from "../components/seo"
 
 const IndexPage = () => {
@@ -34,7 +34,7 @@ const IndexPage = () => {
             <li className="org-list__item" key={org.primaryKey}>
               <Link to={`/org/${org.primaryKey}`}>
                 <figure className="org-list__item__poster">
-                  <SmallPoster url={org.posterImageUrls[0]} />
+                  <Fixed200 url={org.posterImageUrls[0]} />
                   <figcaption>
                     <h2 className="org-list__item__name">{org.name}</h2>
                     <p className="org-list__item__activity-introduce">
