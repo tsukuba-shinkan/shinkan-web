@@ -1,0 +1,35 @@
+name: Deploy to STB server
+
+on:
+  deployment:
+  push:
+    branches: 
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: npm install
+        run: npm install
+      - name: build
+        run: npm run build
+        env:
+          SRC_FILE_ID: 1SDP5wlB7DtIa5pP1R7Idpw91RwbFUZuJczkW2kab9Vc 
+      - name: install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+      - name: prepare .ssh dir
+        run: mkdir -p .ssh && chmod 700 .ssh
+      - name: ssh key generate
+        run: echo "$SSH_PRIVATE_KEY" > .ssh/id_rsa && chmod 600 .ssh/id_rsa
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: deploy with lftp
+        run: lftp -e "set net:max-retries 1; set sftp:connect-program \"ssh -a -x -p $SSH_PORT -i .ssh/id_rsa -o StrictHostKeyChecking=no\"; connect sftp://$SSH_USER:@$SSH_HOST; mirror -eR -x .git -x .ssh ./public $SSH_DIR; quit"
+        env:
+          SSH_PORT: 8022
+          SSH_USER: webgaku
+          SSH_HOST: www.stb.tsukuba.ac.jp
+          SSH_DIR:  ~/public_html/shinkan-web-test/
