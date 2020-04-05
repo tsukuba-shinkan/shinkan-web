@@ -33,28 +33,14 @@ img {
 .categories {
   ul.scrollList {
     /* display: grid; */
-    overflow-x: auto;
+    overflow-x: scroll;
     white-space: nowrap;
     list-style: none;
     -webkit-overflow-scrolling: touch;
 
     li.scrollItem {
       display: inline-block;
-      width: 180px;
-      height: 255px;
-      padding-left: 0;
-      margin-right: 16px;
-      vertical-align: bottom;
       background-color: #fff;
-      border-radius: 10px;
-      box-shadow: rgba(0, 0, 0, 0.2) 1.5px 1.5px;
-
-      img {
-        top: 0;
-        overflow: hidden;
-        vertical-align: middle;
-        object-fit: cover;
-      }
     }
   }
 }
@@ -94,12 +80,6 @@ img {
   clear: both;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
-
-  img {
-    max-width: 200px;
-    padding-right: 8px;
-    vertical-align: middle;
-  }
 }
 
 /* ヘッダー */
@@ -114,27 +94,22 @@ header {
     padding: 16px;
     margin: 0 auto;
 
-    h1 {
+    a {
+      top: 0;
+      display: inline-block;
       height: 48px;
-      margin: 0;
+      font-weight: normal;
+      color: black;
+      text-decoration: none;
+    }
 
-      a {
-        top: 0;
-        display: inline-block;
-        height: 48px;
-        font-weight: normal;
-        color: black;
-        text-decoration: none;
-      }
+    img,
+    span {
+      vertical-align: middle;
+    }
 
-      img,
-      span {
-        vertical-align: middle;
-      }
-
-      span {
-        font-size: 1.2rem;
-      }
+    span {
+      font-size: 1.2rem;
     }
   }
 
@@ -147,6 +122,9 @@ header {
 
 /* フッター */
 footer {
+  position: absolute;
+  right: 0;
+  left: 0;
   padding: 40px;
   font-size: 0.8rem;
 

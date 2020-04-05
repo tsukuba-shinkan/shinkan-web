@@ -1,9 +1,9 @@
 import React from "react"
 import { graphql } from "gatsby"
 // import { Link } from "gatsby"
-
+import Fluid700 from "../components/Fluid700"
+import Fixed200 from "../components/Fixed200"
 import Layout from "../components/layout"
-// import Image from "../components/image"
 import SEO from "../components/seo"
 
 const Post = ({ data }) => {
@@ -14,7 +14,7 @@ const Post = ({ data }) => {
       <div className="row orgdata">
         <div className="half">
           <div className="container">
-            <img src={orgdata.posterImageUrls[0]} alt={orgdata.name} />
+            <Fluid700 url={orgdata.posterImageUrls[0]} />
           </div>
         </div>
         <div className="half">
@@ -89,9 +89,9 @@ const Post = ({ data }) => {
       {orgdata.otherImageUrls.length >= 1 && (
         <>
           <div className="otherImages">
-            {orgdata.otherImageUrls.map(otherImageUrl => (
-              <img src={otherImageUrl} alt="" key={otherImageUrl} />
-            ))}
+            {orgdata.otherImageUrls.map(otherImageUrl => {
+              return <Fixed200 url={otherImageUrl} />
+            })}
           </div>
         </>
       )}
