@@ -34,7 +34,7 @@ const IndexPage = () => {
             <li className="org-list__item" key={org.primaryKey}>
               <Link to={`/org/${org.primaryKey}`}>
                 <figure className="org-list__item__poster">
-                  <Fixed200 url={org.posterImageUrls[0]} />
+                  <Fixed200 url={org.posterImageUrls[0]} alt="" />
                   <figcaption>
                     <h2 className="org-list__item__name">{org.name}</h2>
                     <p className="org-list__item__activity-introduce">
