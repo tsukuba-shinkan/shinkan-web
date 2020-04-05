@@ -1,21 +1,22 @@
 import React from "react"
 import { graphql } from "gatsby"
 // import { Link } from "gatsby"
-
+import Fluid700 from "../components/Fluid700"
+import Fixed200 from "../components/Fixed200"
 import Layout from "../components/layout"
-// import Image from "../components/image"
 import SEO from "../components/seo"
 
 const Post = ({ data }) => {
   const orgdata = data.shinkanWebOrg
   console.log(orgdata.otherImageUrls)
+
   return (
     <Layout>
       <SEO title={orgdata.name} />
       <div className="row orgdata">
         <div className="half">
           <div className="container">
-            <img src={orgdata.posterImageUrls[0]} alt={orgdata.name} />
+            <Fluid700 url={orgdata.posterImageUrls[0]} />
           </div>
         </div>
         <div className="half">
@@ -90,8 +91,7 @@ const Post = ({ data }) => {
         <>
           <div className="otherImages">
             {orgdata.otherImageUrls.map(otherImageUrl => {
-              console.log(otherImageUrl)
-              return <img src={otherImageUrl} alt="" />
+              return <Fixed200 url={otherImageUrl} />
             })}
           </div>
         </>
