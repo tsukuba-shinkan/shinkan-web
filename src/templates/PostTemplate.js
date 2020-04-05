@@ -15,64 +15,28 @@ const Post = ({ data }) => {
       <SEO title={org.name} />
       <div className="post-template">
         <div className="post-template__container">
-          <section className="post-template__visual">
+          <section // ページ左側: ビジュアルカラム
+            className="post-template__visual"
+          >
             <div className="post-template__visual__container">
-              <div className="post-template__visual__poster-wrap">
-                <div className="post-template__visual__header">
+              <div // ポスター
+                className="post-template__visual__poster-wrap"
+              >
+                <div //スマホ版最上部ヘッダー
+                  className="post-template__visual__header"
+                >
                   <h1 className="name">{org.name}</h1>
-                  <aside className="info post-template__info-bar">
-                    <span className="type">
-                      {org.type}・{org.activityType}
-                    </span>
-                    <span className="separator"></span>
-                    <span className="external">
-                      <span className="social">
-                        {org.twitter && org.twitter !== "" ? (
-                          <a
-                            href={`https://twitter.com/${org.twitter}`}
-                            rel="noopener noreferrer"
-                            target="_blank"
-                            className="icon icon--twitter"
-                          >
-                            <FontAwesomeIcon icon={faTwitter} />
-                          </a>
-                        ) : (
-                          ""
-                        )}
-                        {org.instagram && org.instagram !== "" ? (
-                          <a
-                            href={`https://twitter.com/${org.instagram}`}
-                            rel="noopener noreferrer"
-                            target="_blank"
-                            className="icon icon--instagram"
-                          >
-                            <FontAwesomeIcon icon={faInstagram} />
-                          </a>
-                        ) : (
-                          ""
-                        )}
-                      </span>
-                      {org.website && org.website !== "" ? (
-                        <a
-                          className="website"
-                          href={org.website}
-                          rel="noopener noreferrer"
-                          target="_blank"
-                        >
-                          <span>{org.website.replace(/^https?:\/\//, "")}</span>
-                          <FontAwesomeIcon icon={faExternalLinkAlt} />
-                        </a>
-                      ) : (
-                        ""
-                      )}
-                    </span>
-                  </aside>
+                  <InfoNav {...org} className="info" />
                 </div>
-                <figure className="post-template__visual__poster">
+                <figure //ポスター画像
+                  className="post-template__visual__poster"
+                >
                   <img src={org.posterImageUrls[0]} alt="" />
                 </figure>
               </div>
-              <ul className="post-template__visual__image-list">
+              <ul // その他画像リスト
+                className="post-template__visual__image-list"
+              >
                 {org.otherImageUrls.map(url => (
                   <li key={url} className="item">
                     <img src={url} alt="" />
@@ -81,58 +45,18 @@ const Post = ({ data }) => {
               </ul>
             </div>
           </section>
-          <section className="post-template__text">
-            <header className="post-template__text__header">
+          <section // ページ右側: テキストカラム
+            className="post-template__text"
+          >
+            <header // 情報ヘッダー
+              className="post-template__text__header"
+            >
               <h1 className="name">{org.name}</h1>
-              <aside className="info post-template__info-bar">
-                <span className="type">
-                  {org.type}・{org.activityType}
-                </span>
-                <span className="separator"></span>
-                <span className="external">
-                  <span className="social">
-                    {org.twitter && org.twitter !== "" ? (
-                      <a
-                        href={`https://twitter.com/${org.twitter}`}
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        className="icon icon--twitter"
-                      >
-                        <FontAwesomeIcon icon={faTwitter} />
-                      </a>
-                    ) : (
-                      ""
-                    )}
-                    {org.instagram && org.instagram !== "" ? (
-                      <a
-                        href={`https://twitter.com/${org.instagram}`}
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        className="icon icon--instagram"
-                      >
-                        <FontAwesomeIcon icon={faInstagram} />
-                      </a>
-                    ) : (
-                      ""
-                    )}
-                  </span>
-                  {org.website && org.website !== "" ? (
-                    <a
-                      className="website"
-                      href={org.website}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <span>{org.website.replace(/^https?:\/\//, "")}</span>
-                      <FontAwesomeIcon icon={faExternalLinkAlt} />
-                    </a>
-                  ) : (
-                    ""
-                  )}
-                </span>
-              </aside>
+              <InfoNav {...org} className="info" />
             </header>
-            <main className="post-template__text__introduce">
+            <main // 団体紹介文
+              className="post-template__text__introduce"
+            >
               {org.activityIntroduce
                 .split("\n")
                 .filter(p => p.match(/\S+/))
@@ -141,53 +65,7 @@ const Post = ({ data }) => {
                 ))}
             </main>
             <footer className="post-template__text__footer">
-              <aside className="info post-template__info-bar">
-                <span className="type">
-                  {org.type}・{org.activityType}
-                </span>
-                <span className="separator"></span>
-                <span className="external">
-                  <span className="social">
-                    {org.twitter && org.twitter !== "" ? (
-                      <a
-                        href={`https://twitter.com/${org.twitter}`}
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        className="icon icon--twitter"
-                      >
-                        <FontAwesomeIcon icon={faTwitter} />
-                      </a>
-                    ) : (
-                      ""
-                    )}
-                    {org.instagram && org.instagram !== "" ? (
-                      <a
-                        href={`https://twitter.com/${org.instagram}`}
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        className="icon icon--instagram"
-                      >
-                        <FontAwesomeIcon icon={faInstagram} />
-                      </a>
-                    ) : (
-                      ""
-                    )}
-                  </span>
-                  {org.website && org.website !== "" ? (
-                    <a
-                      className="website"
-                      href={org.website}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <span>{org.website.replace(/^https?:\/\//, "")}</span>
-                      <FontAwesomeIcon icon={faExternalLinkAlt} />
-                    </a>
-                  ) : (
-                    ""
-                  )}
-                </span>
-              </aside>
+              <InfoNav {...org} />
             </footer>
           </section>
         </div>
@@ -217,3 +95,74 @@ export const query = graphql`
     }
   }
 `
+
+/**
+ * インフォメーションバー
+ * @param {string} type
+ * @param {string} activityType
+ * @param {string} twitter
+ * @param {string} instagram
+ * @param {string} website
+ */
+const InfoNav = ({
+  type,
+  activityType,
+  twitter,
+  instagram,
+  website,
+  ...props
+}) => (
+  <aside // Infoナビゲーション
+    className={["post-template__info-bar", props.className].join(" ")}
+  >
+    <span className="type">
+      {type}・{activityType}
+    </span>
+    <span className="separator"></span>
+    <span // 外部リンク
+      className="external"
+    >
+      <span // ソーシャルリンク
+        className="social"
+      >
+        {twitter && twitter !== "" ? (
+          <a // Twitter
+            href={`https://twitter.com/${twitter}`}
+            rel="noopener noreferrer"
+            target="_blank"
+            className="icon icon--twitter"
+          >
+            <FontAwesomeIcon icon={faTwitter} />
+          </a>
+        ) : (
+          ""
+        )}
+        {instagram && instagram !== "" ? (
+          <a // Instagram
+            href={`https://twitter.com/${instagram}`}
+            rel="noopener noreferrer"
+            target="_blank"
+            className="icon icon--instagram"
+          >
+            <FontAwesomeIcon icon={faInstagram} />
+          </a>
+        ) : (
+          ""
+        )}
+      </span>
+      {website && website !== "" ? (
+        <a // ウェブサイト
+          className="website"
+          href={website}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <span>{website.replace(/^https?:\/\//, "")}</span>
+          <FontAwesomeIcon icon={faExternalLinkAlt} />
+        </a>
+      ) : (
+        ""
+      )}
+    </span>
+  </aside>
+)
