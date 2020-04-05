@@ -159,8 +159,12 @@
   }
 
   &__info-bar {
-    font-size: 13px;
+    font-size: 15px;
     color: $color-gray-text;
+
+    @include mq-up() {
+      font-size: 13px;
+    }
 
     a {
       color: inherit;
@@ -173,6 +177,105 @@
     & > .type,
     & > .external {
       display: inline-block;
+
+      @include mq-down() {
+        display: block;
+      }
+    }
+
+    & > .separator {
+      display: inline-block;
+      width: 1px;
+      height: 1em;
+      margin: 0 10px;
+      background-color: #888;
+
+      @include mq-down() {
+        display: none;
+      }
+    }
+
+    & > .external {
+      & > .social {
+        margin-right: 10px;
+
+        @include mq-down() {
+          margin-right: 5px;
+        }
+
+        & > .icon {
+          position: relative;
+          display: inline-block;
+          width: 48px;
+          height: 48px;
+          margin: 10px 10px 10px -10px;
+          color: #fff;
+          text-align: center;
+          vertical-align: middle;
+
+          @include mq-up() {
+            width: 20px;
+            height: 20px;
+            margin: 10px 5px;
+          }
+
+          svg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            margin: auto;
+          }
+
+          &::before {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            margin: auto;
+            content: '';
+            background-color: #444;
+            border-radius: 50%;
+
+            @include mq-up() {
+              display: none;
+            }
+          }
+
+          &--twitter {
+            &::before {
+              background-color: $color-twitter;
+            }
+
+            @include mq-up() {
+              color: $color-twitter;
+            }
+          }
+
+          &--instagram {
+            &::before {
+              background-color: $color-instagram;
+            }
+
+            @include mq-up() {
+              color: $color-instagram;
+            }
+          }
+        }
+      }
+
+      & > .website {
+        svg {
+          margin-left: 5px;
+        }
+      }
     }
   }
 }

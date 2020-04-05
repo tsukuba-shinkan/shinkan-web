@@ -4,6 +4,9 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import "./PostTemplate.scss"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons"
+import { faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons"
 
 const Post = ({ data }) => {
   const { org } = data
@@ -21,11 +24,47 @@ const Post = ({ data }) => {
                     <span className="type">
                       {org.type}・{org.activityType}
                     </span>
+                    <span className="separator"></span>
                     <span className="external">
-                      <span className="social"></span>
-                      <a className="website" href={org.website}>
-                        {org.website.replace(/^https?:\/\//, "")}
-                      </a>
+                      <span className="social">
+                        {org.twitter && org.twitter !== "" ? (
+                          <a
+                            href={`https://twitter.com/${org.twitter}`}
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            className="icon icon--twitter"
+                          >
+                            <FontAwesomeIcon icon={faTwitter} />
+                          </a>
+                        ) : (
+                          ""
+                        )}
+                        {org.instagram && org.instagram !== "" ? (
+                          <a
+                            href={`https://twitter.com/${org.instagram}`}
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            className="icon icon--instagram"
+                          >
+                            <FontAwesomeIcon icon={faInstagram} />
+                          </a>
+                        ) : (
+                          ""
+                        )}
+                      </span>
+                      {org.website && org.website !== "" ? (
+                        <a
+                          className="website"
+                          href={org.website}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
+                          <span>{org.website.replace(/^https?:\/\//, "")}</span>
+                          <FontAwesomeIcon icon={faExternalLinkAlt} />
+                        </a>
+                      ) : (
+                        ""
+                      )}
                     </span>
                   </aside>
                 </div>
@@ -49,11 +88,47 @@ const Post = ({ data }) => {
                 <span className="type">
                   {org.type}・{org.activityType}
                 </span>
+                <span className="separator"></span>
                 <span className="external">
-                  <span className="social"></span>
-                  <a className="website" href={org.website}>
-                    {org.website.replace(/^https?:\/\//, "")}
-                  </a>
+                  <span className="social">
+                    {org.twitter && org.twitter !== "" ? (
+                      <a
+                        href={`https://twitter.com/${org.twitter}`}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        className="icon icon--twitter"
+                      >
+                        <FontAwesomeIcon icon={faTwitter} />
+                      </a>
+                    ) : (
+                      ""
+                    )}
+                    {org.instagram && org.instagram !== "" ? (
+                      <a
+                        href={`https://twitter.com/${org.instagram}`}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        className="icon icon--instagram"
+                      >
+                        <FontAwesomeIcon icon={faInstagram} />
+                      </a>
+                    ) : (
+                      ""
+                    )}
+                  </span>
+                  {org.website && org.website !== "" ? (
+                    <a
+                      className="website"
+                      href={org.website}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      <span>{org.website.replace(/^https?:\/\//, "")}</span>
+                      <FontAwesomeIcon icon={faExternalLinkAlt} />
+                    </a>
+                  ) : (
+                    ""
+                  )}
                 </span>
               </aside>
             </header>
@@ -70,11 +145,47 @@ const Post = ({ data }) => {
                 <span className="type">
                   {org.type}・{org.activityType}
                 </span>
+                <span className="separator"></span>
                 <span className="external">
-                  <span className="social"></span>
-                  <a className="website" href={org.website}>
-                    {org.website.replace(/^https?:\/\//, "")}
-                  </a>
+                  <span className="social">
+                    {org.twitter && org.twitter !== "" ? (
+                      <a
+                        href={`https://twitter.com/${org.twitter}`}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        className="icon icon--twitter"
+                      >
+                        <FontAwesomeIcon icon={faTwitter} />
+                      </a>
+                    ) : (
+                      ""
+                    )}
+                    {org.instagram && org.instagram !== "" ? (
+                      <a
+                        href={`https://twitter.com/${org.instagram}`}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        className="icon icon--instagram"
+                      >
+                        <FontAwesomeIcon icon={faInstagram} />
+                      </a>
+                    ) : (
+                      ""
+                    )}
+                  </span>
+                  {org.website && org.website !== "" ? (
+                    <a
+                      className="website"
+                      href={org.website}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      <span>{org.website.replace(/^https?:\/\//, "")}</span>
+                      <FontAwesomeIcon icon={faExternalLinkAlt} />
+                    </a>
+                  ) : (
+                    ""
+                  )}
                 </span>
               </aside>
             </footer>
