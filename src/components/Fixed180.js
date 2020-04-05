@@ -1,6 +1,6 @@
-import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
-import Img from "gatsby-image";
+import React from "react"
+import { useStaticQuery, graphql } from "gatsby"
+import Img from "gatsby-image"
 
 export default function Fluid180({ url, alt }) {
   const allImages = useStaticQuery(graphql`
@@ -19,9 +19,9 @@ export default function Fluid180({ url, alt }) {
         }
       }
     }
-  `);
+  `)
   const imageNode = allImages.allImageSharp.nodes.find(
-    e => e.parent.url == url
-  );
-  return <Img fixed={imageNode.fixed} alt={alt} />;
+    e => e.parent.url === url
+  )
+  return <Img fixed={imageNode.fixed} alt={alt} />
 }
