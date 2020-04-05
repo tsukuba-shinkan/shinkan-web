@@ -14,7 +14,7 @@ const Post = ({ data }) => {
       <div className="row orgdata">
         <div className="half">
           <div className="container">
-            <Fluid700 url={orgdata.posterImageUrls[0]} />
+            <Fluid700 url={orgdata.posterImageUrls[0]} alt="" />
           </div>
         </div>
         <div className="half">
@@ -90,7 +90,7 @@ const Post = ({ data }) => {
         <>
           <div className="otherImages">
             {orgdata.otherImageUrls.map(otherImageUrl => {
-              return <Fixed200 key={otherImageUrl} url={otherImageUrl} />
+              return <Fixed200 key={otherImageUrl} url={otherImageUrl} alt="" />
             })}
           </div>
         </>

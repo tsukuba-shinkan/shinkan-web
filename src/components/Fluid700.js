@@ -2,7 +2,7 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 
-export default function Fluid700({ url }) {
+export default function Fluid700({ url, alt }) {
   const allImages = useStaticQuery(graphql`
     query c {
       allImageSharp {
@@ -23,5 +23,5 @@ export default function Fluid700({ url }) {
   const imageNode = allImages.allImageSharp.nodes.find(
     e => e.parent.url === url
   )
-  return <Img fluid={imageNode.fluid} />
+  return <Img fluid={imageNode.fluid} alt={alt} />
 }

@@ -26,7 +26,9 @@ const Logo = () => {
     }
   `)
 
-  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+  return (
+    <Img fluid={data.placeholderImage.childImageSharp.fluid} alt="筑波大学" />
+  )
 }
 
 export default Logo
