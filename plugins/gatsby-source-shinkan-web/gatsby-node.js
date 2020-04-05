@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const axios = require("axios")
 const parseCsv = require("csv-parse/lib/sync")
 const { createRemoteFileNode } = require("gatsby-source-filesystem")

@@ -2,7 +2,7 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 
-export default function({ url }) {
+export default function Fluid700({ url }) {
   const allImages = useStaticQuery(graphql`
     query c {
       allImageSharp {
