@@ -2,18 +2,15 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 // import Image from "../components/image"
-// import Logo from "../components/logo"
+import ShinkanWebLogo from "./shinkanweblogo"
+import SchoolLogo from "./schoollogo"
 
 const Header = ({ siteTitle }) => (
   <header>
-    <div>
+    <div className="headerWrapper">
       <Link to="/">
-        <img
-          src="https://drive.google.com/uc?id=1ReaOXbZz2mHy2CKZ7cQONvot6vp3S02m"
-          alt={`筑波大学`}
-          id={`headerLogo`}
-        />
-        <span>新歓Web</span>
+        <ShinkanWebLogo />
+        <SchoolLogo />
       </Link>
     </div>
   </header>

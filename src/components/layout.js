@@ -11,6 +11,7 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 
 import Header from "./header"
 import "sanitize.css"
+import SchoolLogo from "./schoollogo"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -39,11 +40,7 @@ const Layout = ({ children }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
-                  src="https://drive.google.com/uc?id=1ReaOXbZz2mHy2CKZ7cQONvot6vp3S02m"
-                  alt="筑波大学"
-                  id="footerLogo"
-                />
+                <SchoolLogo />
               </a>
             </div>
           </div>

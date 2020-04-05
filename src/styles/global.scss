@@ -108,11 +108,12 @@ header {
   background-color: #fff;
   box-shadow: 0 1.5px 1px 1px rgba(0, 0, 0, 0.5);
 
-  div {
+  div.headerWrapper {
     max-width: 960px;
     height: 80px;
     padding: 16px;
     margin: 0 auto;
+    text-align: center;
 
     a {
       top: 0;
@@ -121,6 +122,10 @@ header {
       font-weight: normal;
       color: black;
       text-decoration: none;
+
+      .shinkanWebLogo {
+        margin-right: 16px;
+      }
     }
 
     img,
