@@ -90,7 +90,7 @@ const Post = ({ data }) => {
         <>
           <div className="otherImages">
             {orgdata.otherImageUrls.map(otherImageUrl => {
-              return <Fixed200 url={otherImageUrl} />
+              return <Fixed200 key={otherImageUrl} url={otherImageUrl} />
             })}
           </div>
         </>
