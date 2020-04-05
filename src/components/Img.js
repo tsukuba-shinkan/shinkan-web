@@ -1,8 +1,8 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
+import GatsbyImageImg from "gatsby-image"
 
-export default function({ url, alt }) {
+export default function Img({ url, alt }) {
   const allImages = useStaticQuery(graphql`
     query a {
       allImageSharp {
@@ -23,5 +23,5 @@ export default function({ url, alt }) {
   const imageNode = allImages.allImageSharp.nodes.find(
     e => e.parent.url === url
   )
-  return <Img fluid={imageNode.fluid} alt={alt} />
+  return <GatsbyImageImg fluid={imageNode.fluid} alt={alt} />
 }
