@@ -1,101 +1,86 @@
 import React from "react"
 import { graphql } from "gatsby"
-// import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-// import Image from "../components/image"
 import SEO from "../components/seo"
+import "./PostTemplate.scss"
 
 const Post = ({ data }) => {
-  const orgdata = data.shinkanWebOrg
-  console.log(orgdata.otherImageUrls)
+  const { org } = data
   return (
     <Layout>
-      <SEO title={orgdata.name} />
-      <div className="row orgdata">
-        <div className="half">
-          <div className="container">
-            <img src={orgdata.posterImageUrls[0]} alt={orgdata.name} />
-          </div>
-        </div>
-        <div className="half">
-          <div className="container">
-            <h2>{orgdata.name}</h2>
-            <hr />
-            {orgdata.website !== "" && (
-              <>
-                <span className="socialLink">
-                  <img
-                    src="https://icongr.am/entypo/link.svg?size=20&amp;color=aaaaaa"
-                    alt="link"
-                  />
-                  <a
-                    href={orgdata.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {orgdata.website}
-                  </a>
-                </span>
-                <br />
-              </>
-            )}
-            {orgdata.twitter !== "" && (
-              <>
-                <span className="socialLink">
-                  <img
-                    src="https://icongr.am/entypo/twitter.svg?size=20&amp;color=aaaaaa"
-                    alt="link"
-                  />
-                  <a
-                    href={"https://twitter.com/" + orgdata.twitter}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {orgdata.twitter}
-                  </a>
-                </span>
-                &nbsp;
-              </>
-            )}
-            {orgdata.instagram !== "" && (
-              <>
-                <span className="socialLink">
-                  <img
-                    src="https://icongr.am/entypo/instagram.svg?size=20&amp;color=aaaaaa"
-                    alt="link"
-                  />
-                  <a
-                    href={"https://instagram.com/" + orgdata.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {orgdata.instagram}
-                  </a>
-                </span>
-              </>
-            )}
-            <div className="activityIntroduce">
-              {orgdata.activityIntroduce
-                .split("\n")
-                .filter(s => s.match(/\S+/))
-                .map(s => (
-                  <p>{s}</p>
+      <SEO title={org.name} />
+      <div className="post-template">
+        <div className="post-template__container">
+          <section className="post-template__visual">
+            <div className="post-template__visual__container">
+              <div className="post-template__visual__poster-wrap">
+                <div className="post-template__visual__header">
+                  <h1 className="name">{org.name}</h1>
+                  <aside className="info post-template__info-bar">
+                    <span className="type">
+                      {org.type}・{org.activityType}
+                    </span>
+                    <span className="external">
+                      <span className="social"></span>
+                      <a className="website" href={org.website}>
+                        {org.website.replace(/^https?:\/\//, "")}
+                      </a>
+                    </span>
+                  </aside>
+                </div>
+                <figure className="post-template__visual__poster">
+                  <img src={org.posterImageUrls[0]} alt="" />
+                </figure>
+              </div>
+              <ul className="post-template__visual__image-list">
+                {org.otherImageUrls.map(url => (
+                  <li key={url} className="item">
+                    <img src={url} alt="" />
+                  </li>
                 ))}
+              </ul>
             </div>
-          </div>
+          </section>
+          <section className="post-template__text">
+            <header className="post-template__text__header">
+              <h1 className="name">{org.name}</h1>
+              <aside className="info post-template__info-bar">
+                <span className="type">
+                  {org.type}・{org.activityType}
+                </span>
+                <span className="external">
+                  <span className="social"></span>
+                  <a className="website" href={org.website}>
+                    {org.website.replace(/^https?:\/\//, "")}
+                  </a>
+                </span>
+              </aside>
+            </header>
+            <main className="post-template__text__introduce">
+              {org.activityIntroduce
+                .split("\n")
+                .filter(p => p.match(/\S+/))
+                .map((p, i) => (
+                  <p key={`${i}-${p}`}>{p}</p>
+                ))}
+            </main>
+            <footer className="post-template__text__footer">
+              <aside className="info post-template__info-bar">
+                <span className="type">
+                  {org.type}・{org.activityType}
+                </span>
+                <span className="external">
+                  <span className="social"></span>
+                  <a className="website" href={org.website}>
+                    {org.website.replace(/^https?:\/\//, "")}
+                  </a>
+                </span>
+              </aside>
+            </footer>
+          </section>
         </div>
       </div>
-      {orgdata.otherImageUrls.length >= 1 && (
-        <>
-          <div className="otherImages">
-            {orgdata.otherImageUrls.map(otherImageUrl => {
-              console.log(otherImageUrl)
-              return <img src={otherImageUrl} alt="" />
-            })}
-          </div>
-        </>
-      )}
     </Layout>
   )
 }
@@ -104,7 +89,7 @@ export default Post
 
 export const query = graphql`
   query($primaryKey: String!) {
-    shinkanWebOrg(primaryKey: { eq: $primaryKey }) {
+    org: shinkanWebOrg(primaryKey: { eq: $primaryKey }) {
       activityIntroduce
       activityType
       id

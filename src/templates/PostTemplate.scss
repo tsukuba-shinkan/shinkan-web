@@ -1,0 +1,178 @@
+@import '../styles/vars.scss';
+@import '../styles/media.scss';
+
+.post-template {
+  $visual-poster-width: 420px;
+  $visual-list-width: 65px;
+  $visual-gap: 10px;
+  $text-margin-lr: 50px;
+  $text-margin-lr-sm: 25px;
+
+  width: 100%;
+  padding: 0.1px 0; // 内部コンテンツのmarginが上下に溢れないようにする
+  background-color: $color-empty-bg;
+
+  // カラムのコンテナー
+  &__container {
+    $margin-lr: 20px;
+
+    display: grid;
+    grid-template-columns: #{$visual-poster-width + $visual-gap + $visual-list-width} 1fr;
+    grid-gap: 20px;
+    width: calc(100vw - #{$margin-lr * 2});
+    max-width: 1100px;
+    min-height: calc(100vh - 250px);
+    margin: 40px auto;
+
+    @include mq-down() {
+      $margin-lr-sm: 10px;
+
+      grid-template-columns: 1fr;
+      grid-gap: 10px;
+      width: calc(100vw - #{$margin-lr-sm * 2});
+      margin: 10px auto;
+    }
+  }
+
+  &__visual {
+    &__container {
+      position: sticky;
+      top: 20px;
+      display: grid;
+      grid-template-columns: $visual-poster-width $visual-list-width;
+      grid-gap: $visual-gap;
+
+      @include mq-down() {
+        position: static;
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &__poster-wrap {
+      border: 1px solid #ddd;
+    }
+
+    &__header {
+      padding: 0.1px 0;
+      background-color: #fff;
+
+      & > .name {
+        margin: 40px $text-margin-lr-sm 20px;
+        font-size: 26px;
+      }
+
+      & > .info {
+        margin: 20px $text-margin-lr-sm 40px;
+      }
+
+      @include mq-up() {
+        display: none;
+      }
+    }
+
+    &__poster {
+      position: relative;
+      padding: 0.1px 0;
+      margin: 0;
+      background-color: #444;
+
+      &::before {
+        display: block;
+        margin-top: #{100% * 7 / 5};
+        content: '';
+      }
+
+      img {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff; // 透過画像の背景を確保
+        object-fit: cover;
+      }
+    }
+
+    &__image-list {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+
+      @include mq-down() {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 10px;
+      }
+
+      & > .item {
+        width: $visual-list-width;
+        height: $visual-list-width;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+
+        @include mq-down() {
+          margin-bottom: 0;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  &__text {
+    padding: 0.1px 0;
+    color: #000;
+    background-color: #fff;
+
+    &__header {
+      margin: 70px $text-margin-lr 50px;
+
+      @include mq-down() {
+        margin: 50px $text-margin-lr-sm 30px;
+      }
+
+      & > .name {
+        font-size: 26px;
+        font-weight: $font-weight-bold;
+      }
+    }
+
+    &__introduce {
+      margin: 20px $text-margin-lr 90px;
+      font-size: 14px;
+
+      @include mq-down() {
+        margin: 20px $text-margin-lr-sm 90px;
+      }
+    }
+
+    &__footer {
+      margin: 20px $text-margin-lr 50px;
+
+      @include mq-down() {
+        margin: 20px $text-margin-lr-sm 50px;
+      }
+    }
+  }
+
+  &__info-bar {
+    font-size: 13px;
+    color: $color-gray-text;
+
+    a {
+      color: inherit;
+    }
+
+    & > .type {
+      margin-right: 10px;
+    }
+
+    & > .type,
+    & > .external {
+      display: inline-block;
+    }
+  }
+}
