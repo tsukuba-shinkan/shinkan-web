@@ -5,7 +5,7 @@ import React from "react"
 import ShinkanWebLogo from "./shinkanweblogo"
 import SchoolLogo from "./schoollogo"
 
-const Header = ({ siteTitle }) => (
+const Header = () => (
   <header>
     <div className="headerWrapper">
       <Link to="/">
