@@ -67,7 +67,7 @@
       }
 
       // ポスター画像
-      img {
+      .gatsby-image-wrapper {
         display: block;
         width: calc(100% - #{$margin-lr} * 2);
         height: calc(100% - #{$margin-tb + $caption-height + $caption-margin-tb + max($margin-tb, $caption-margin-tb)}); // アスペクト比が基準外でも規定サイズで表示させる

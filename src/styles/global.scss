@@ -33,28 +33,14 @@ img {
 .categories {
   ul.scrollList {
     /* display: grid; */
-    overflow-x: auto;
+    overflow-x: scroll;
     white-space: nowrap;
     list-style: none;
     -webkit-overflow-scrolling: touch;
 
     li.scrollItem {
       display: inline-block;
-      width: 180px;
-      height: 255px;
-      padding-left: 0;
-      margin-right: 16px;
-      vertical-align: bottom;
       background-color: #fff;
-      border-radius: 10px;
-      box-shadow: rgba(0, 0, 0, 0.2) 1.5px 1.5px;
-
-      img {
-        top: 0;
-        overflow: hidden;
-        vertical-align: middle;
-        object-fit: cover;
-      }
     }
   }
 }
@@ -94,12 +80,6 @@ img {
   clear: both;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
-
-  img {
-    max-width: 200px;
-    padding-right: 8px;
-    vertical-align: middle;
-  }
 }
 
 /* ヘッダー */
@@ -108,11 +88,12 @@ img {
   background-color: #fff;
   box-shadow: 0 1.5px 1px 1px rgba(0, 0, 0, 0.5);
 
-  div {
+  div.headerWrapper {
     max-width: 960px;
     height: 80px;
     padding: 16px;
     margin: 0 auto;
+    text-align: center;
 
     a {
       top: 0;
@@ -121,6 +102,10 @@ img {
       font-weight: normal;
       color: black;
       text-decoration: none;
+
+      .shinkanWebLogo {
+        margin-right: 16px;
+      }
     }
 
     img,

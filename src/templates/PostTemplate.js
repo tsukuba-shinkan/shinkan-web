@@ -5,12 +5,16 @@ import { graphql } from "gatsby"
 import Lightbox from "react-image-lightbox"
 import "react-image-lightbox/style.css"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import "./PostTemplate.scss"
+// FontAwesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons"
 import { faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons"
+
+import Layout from "../components/layout"
+import SEO from "../components/seo"
+import Fluid700 from "../components/Fluid700"
+import Fluid200 from "../components/Fluid200"
+import "./PostTemplate.scss"
 
 const Post = ({ data }) => {
   const { org } = data
@@ -41,7 +45,7 @@ const Post = ({ data }) => {
                 <figure //ポスター画像
                   className="post-template__visual__poster"
                 >
-                  <img src={org.posterImageUrls[0]} alt="" />
+                  <Fluid700 url={org.posterImageUrls[0]} alt="" />
                 </figure>
               </div>
               <ul // その他画像リスト
@@ -56,7 +60,7 @@ const Post = ({ data }) => {
                       setLightboxOpenState(true)
                     }}
                   >
-                    <img src={url} alt="" />
+                    <Fluid200 url={url} alt="" />
                   </li>
                 ))}
               </ul>

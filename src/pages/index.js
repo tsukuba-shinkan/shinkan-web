@@ -3,7 +3,7 @@ import { graphql, useStaticQuery, Link, navigate } from "gatsby"
 import "./index.scss"
 
 import Layout from "../components/layout"
-// import Image from "../components/image"
+import Fluid200 from "../components/Fluid200"
 import SEO from "../components/seo"
 
 const IndexPage = () => {
@@ -26,13 +26,14 @@ const IndexPage = () => {
   return (
     <Layout>
       <SEO title="ホーム" />
+
       <div className="page--index">
         <ul className="org-list">
           {orgs.edges.map(({ node: org }) => (
             <li className="org-list__item" key={org.primaryKey}>
               <Link to={`/org/${org.primaryKey}`}>
                 <figure className="org-list__item__poster">
-                  <img src={org.posterImageUrls[0]} alt="" />
+                  <Fluid200 url={org.posterImageUrls[0]} alt="" />
                   <figcaption>
                     <h2 className="org-list__item__name">{org.name}</h2>
                     <p className="org-list__item__activity-introduce">
@@ -44,7 +45,7 @@ const IndexPage = () => {
 
               <div // スマホ用
                 className="org-list__item__sp-caption"
-                onClick={e => {
+                onClick={() => {
                   if (lastTouchedItem === org.primaryKey)
                     navigate(`/org/${org.primaryKey}`)
                   setLastTouchedItem(org.primaryKey)
