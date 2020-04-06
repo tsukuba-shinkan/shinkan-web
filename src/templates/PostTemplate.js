@@ -1,5 +1,9 @@
-import React from "react"
+import React, { useState } from "react"
 import { graphql } from "gatsby"
+
+// react-image-lightbox
+import Lightbox from "react-image-lightbox"
+import "react-image-lightbox/style.css"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -10,6 +14,12 @@ import { faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons"
 
 const Post = ({ data }) => {
   const { org } = data
+
+  // Lightbox
+  const lightboxImages = [...org.otherImageUrls]
+  const [isLightboxOpen, setLightboxOpenState] = useState(false)
+  const [lightboxIndex, setLightboxIndex] = useState(0)
+
   return (
     <Layout>
       <SEO title={org.name} />
@@ -38,7 +48,14 @@ const Post = ({ data }) => {
                 className="post-template__visual__image-list"
               >
                 {org.otherImageUrls.map(url => (
-                  <li key={url} className="item">
+                  <li
+                    key={url}
+                    className="item"
+                    onClick={() => {
+                      setLightboxIndex(lightboxImages.indexOf(url))
+                      setLightboxOpenState(true)
+                    }}
+                  >
                     <img src={url} alt="" />
                   </li>
                 ))}
@@ -69,6 +86,32 @@ const Post = ({ data }) => {
             </footer>
           </section>
         </div>
+        {isLightboxOpen ? (
+          <Lightbox // 画像モーダル
+            mainSrc={lightboxImages[lightboxIndex]}
+            nextSrc={
+              lightboxImages[(lightboxIndex + 1) % lightboxImages.length]
+            }
+            prevSrc={
+              lightboxImages[
+                (lightboxIndex + lightboxImages.length - 1) %
+                  lightboxImages.length
+              ]
+            }
+            onCloseRequest={() => setLightboxOpenState(false)}
+            onMoveNextRequest={() =>
+              setLightboxIndex((lightboxIndex + 1) % lightboxImages.length)
+            }
+            onMovePrevRequest={() =>
+              setLightboxIndex(
+                (lightboxIndex + lightboxImages.length - 1) %
+                  lightboxImages.length
+              )
+            }
+          />
+        ) : (
+          ""
+        )}
       </div>
     </Layout>
   )
