@@ -6,7 +6,7 @@ import SchoolLogo from "./schoollogo"
 
 const Header = () => (
   <header className="site-header">
-    <div>
+    <div className="headerWrapper">
       <Link to="/">
         <ShinkanWebLogo />
         <SchoolLogo />
