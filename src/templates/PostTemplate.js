@@ -156,7 +156,7 @@ const InfoNav = ({
   ...props
 }) => (
   <aside // Infoナビゲーション
-    className={["post-template__info-bar", props.className].join(" ")}
+    className={["post-template__info-nav", props.className].join(" ")}
   >
     <span className="type">
       {type}・{activityType}
