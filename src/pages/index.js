@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { graphql, useStaticQuery, Link, navigate } from "gatsby"
 import "./index.scss"
 
@@ -6,10 +6,14 @@ import Layout from "../components/layout"
 import Fluid200 from "../components/Fluid200"
 import SEO from "../components/seo"
 
-const shuffle = () => Math.random() - 0.5
-
 const IndexPage = () => {
   const [lastTouchedItem, setLastTouchedItem] = useState(null)
+
+  // ポスターのシャッフル
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+  const shuffle = () => (mounted ? 1 : Math.random() - 0.5)
+
   const { orgs } = useStaticQuery(graphql`
     {
       orgs: allShinkanWebOrg {
