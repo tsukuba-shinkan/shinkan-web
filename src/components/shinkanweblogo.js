@@ -20,7 +20,7 @@ const ShinkanWebLogo = () => {
         relativePath: { eq: "shinkan-web-icon-transparent.png" }
       ) {
         childImageSharp {
-          fixed(height: 48) {
+          fixed(height: 56) {
             ...GatsbyImageSharpFixed
           }
         }
