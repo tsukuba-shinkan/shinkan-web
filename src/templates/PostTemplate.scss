@@ -2,12 +2,19 @@
 @import '../styles/media.scss';
 
 .post-template {
+  // ビジュアルカラム（左側）の幅
   $visual-poster-width: 420px;
   $visual-poster-width-md: 300px;
+
+  // その他画像リストの幅
   $visual-list-width: 65px;
   $visual-list-width-md: 50px;
+
+  // 左右カラム間隔
   $visual-gap: 15px;
   $visual-gap-md: 10px;
+
+  // テキストカラム（右側）内左右幅
   $text-margin-lr: 50px;
   $text-margin-lr-sm: 25px;
 
@@ -27,11 +34,13 @@
     min-height: calc(100vh - 250px);
     margin: 40px auto;
 
+    // md < width <lg: 2段カラムのまま幅を調整
     @include mq-down(lg) {
       grid-template-columns: #{$visual-poster-width-md + $visual-gap-md + $visual-list-width-md} 1fr;
       grid-gap: 30px;
     }
 
+    // width < md: 1段カラムへ
     @include mq-down() {
       $margin-lr-sm: 10px;
 
@@ -42,6 +51,7 @@
     }
   }
 
+  // ページ左側: ビジュアルカラム
   &__visual {
     &__container {
       position: sticky;
@@ -50,11 +60,13 @@
       grid-template-columns: $visual-poster-width $visual-list-width;
       grid-gap: $visual-gap;
 
+      // md < width <lg: 2段カラムのまま幅を調整
       @include mq-down(lg) {
         grid-template-columns: $visual-poster-width-md $visual-list-width-md;
         grid-gap: $visual-gap-md;
       }
 
+      // width < md: 1段カラムへ
       @include mq-down() {
         position: static;
         grid-template-columns: 1fr;
@@ -65,6 +77,7 @@
       border: 1px solid #bbb;
     }
 
+    // スマホ版最上部ヘッダー
     &__header {
       padding: 0.1px 0;
       background-color: #fff;
@@ -83,12 +96,14 @@
       }
     }
 
+    // ポスター画像
     &__poster {
       position: relative;
       padding: 0.1px 0;
       margin: 0;
       background-color: #444;
 
+      // アスペクト比を維持する
       &::before {
         display: block;
         margin-top: #{100% * 7 / 5};
@@ -105,6 +120,7 @@
       }
     }
 
+    // その他画像リスト
     &__image-list {
       padding: 0;
       margin: 0;
@@ -135,11 +151,13 @@
     }
   }
 
+  // ページ右側: テキストカラム
   &__text {
     padding: 0.1px 0;
     color: #000;
     background-color: #fff;
 
+    // 情報ヘッダー
     &__header {
       margin: 70px $text-margin-lr 50px;
 
@@ -153,6 +171,7 @@
       }
     }
 
+    // 団体紹介文
     &__introduce {
       margin: 20px $text-margin-lr 90px;
       font-size: 14px;
@@ -171,6 +190,7 @@
     }
   }
 
+  // <InfoNav>: Infoナビゲーション
   &__info-nav {
     font-size: 15px;
     color: $color-gray-text;
@@ -196,6 +216,7 @@
       }
     }
 
+    // 分割縦線
     & > .separator {
       display: inline-block;
       width: 1px;
@@ -203,20 +224,23 @@
       margin: 0 10px;
       background-color: #888;
 
+      // スマホでは非表示
       @include mq-down() {
         display: none;
       }
     }
 
+    // 外部リンク
     & > .external {
       margin: 10px 0;
 
+      // ソーシャルリンク
       & > .social {
         & > .icon {
           position: relative;
           display: inline-block;
-          width: 48px;
-          height: 48px;
+          width: 48px; // タッチターゲットを48px確保
+          height: 48px; // タッチターゲットを48px確保
           margin: 0 10px 0 -10px;
           color: #fff;
           text-align: center;
@@ -239,6 +263,7 @@
             margin: auto;
           }
 
+          // スマホ版での色付き背景
           &::before {
             position: absolute;
             top: 0;
@@ -258,6 +283,7 @@
             }
           }
 
+          // 色指定: Twitter
           &--twitter {
             &::before {
               background-color: $color-twitter;
@@ -268,6 +294,7 @@
             }
           }
 
+          // Instagram: 色指定
           &--instagram {
             &::before {
               background-color: $color-instagram;
@@ -279,11 +306,13 @@
           }
         }
 
+        // ソーシャルアイコンが1個以上ある時に、ウェブサイトリンクとの間隔を確保
         & > *:last-child {
           margin-right: 10px;
         }
       }
 
+      // ウェブサイト
       & > .website {
         svg {
           margin-left: 5px;
