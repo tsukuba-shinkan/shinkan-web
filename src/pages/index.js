@@ -6,6 +6,8 @@ import Layout from "../components/layout"
 import Fluid200 from "../components/Fluid200"
 import SEO from "../components/seo"
 
+const shuffle = () => Math.random() - 0.5
+
 const IndexPage = () => {
   const [lastTouchedItem, setLastTouchedItem] = useState(null)
   const { orgs } = useStaticQuery(graphql`
@@ -29,7 +31,7 @@ const IndexPage = () => {
 
       <div className="page--index">
         <ul className="org-list">
-          {orgs.edges.map(({ node: org }) => (
+          {orgs.edges.sort(shuffle).map(({ node: org }) => (
             <li className="org-list__item" key={org.primaryKey}>
               <Link to={`/org/${org.primaryKey}`}>
                 <figure className="org-list__item__poster">
