@@ -3,8 +3,6 @@ import { graphql, useStaticQuery, Link, navigate } from "gatsby"
 import "./index.scss"
 
 import Layout from "../components/layout"
-
-//import Fixed200 from "../components/Fixed200"
 import Fluid200 from "../components/Fluid200"
 import SEO from "../components/seo"
 

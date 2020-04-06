@@ -1,12 +1,11 @@
 import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
 // import Image from "../components/image"
 import ShinkanWebLogo from "./shinkanweblogo"
 import SchoolLogo from "./schoollogo"
 
 const Header = () => (
-  <header>
+  <header className="site-header">
     <div className="headerWrapper">
       <Link to="/">
         <ShinkanWebLogo />
@@ -15,13 +14,5 @@ const Header = () => (
     </div>
   </header>
 )
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
 
 export default Header
