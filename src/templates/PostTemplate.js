@@ -158,64 +158,79 @@ const InfoNav = ({
   instagram,
   website,
   ...props
-}) => (
-  <aside // Infoナビゲーション
-    className={["post-template__info-nav", props.className].join(" ")}
-  >
-    <span className="type">
-      {type}・{activityType}
-    </span>
-    <span className="separator"></span>
-    <span // 外部リンク
-      className="external"
+}) => {
+  const isTwitterAvailable = twitter && twitter !== ""
+  const isInstagramAvailable = instagram && instagram !== ""
+  const isSocialAvailable = isTwitterAvailable || isInstagramAvailable
+  const isWebsiteAvailable = website && website !== ""
+  const isExternalAvailable = isSocialAvailable || isWebsiteAvailable
+  return (
+    <aside // Infoナビゲーション
+      className={["post-template__info-nav", props.className].join(" ")}
     >
-      <span // ソーシャルリンク
-        className="social"
-      >
-        {twitter && twitter !== "" ? (
-          <a // Twitter
-            href={`https://twitter.com/${twitter}`}
-            rel="noopener noreferrer"
-            target="_blank"
-            className="icon icon--twitter"
-          >
-            <FontAwesomeIcon icon={faTwitter} />
-          </a>
-        ) : (
-          ""
-        )}
-        {instagram && instagram !== "" ? (
-          <a // Instagram
-            href={`https://twitter.com/${instagram}`}
-            rel="noopener noreferrer"
-            target="_blank"
-            className="icon icon--instagram"
-          >
-            <FontAwesomeIcon icon={faInstagram} />
-          </a>
-        ) : (
-          ""
-        )}
+      <span className="type">
+        {type}・{activityType}
       </span>
-      {website && website !== "" ? (
-        <a // ウェブサイト
-          className="website"
-          href={website}
-          rel="noopener noreferrer"
-          target="_blank"
+      <span className="separator"></span>
+      {isExternalAvailable ? (
+        <span // 外部リンク
+          className="external"
         >
-          <span>
-            {website.replace(/^https?:\/\/([^/]+).*$/, (_, domain) =>
-              domain.length > 20
-                ? domain.slice(0, 10) + "..." + domain.slice(-10)
-                : domain
-            )}
-          </span>
-          <FontAwesomeIcon icon={faExternalLinkAlt} />
-        </a>
+          {isSocialAvailable ? (
+            <span // ソーシャルリンク
+              className="social"
+            >
+              {isTwitterAvailable ? (
+                <a // Twitter
+                  href={`https://twitter.com/${twitter}`}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="icon icon--twitter"
+                >
+                  <FontAwesomeIcon icon={faTwitter} />
+                </a>
+              ) : (
+                ""
+              )}
+              {isInstagramAvailable ? (
+                <a // Instagram
+                  href={`https://twitter.com/${instagram}`}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="icon icon--instagram"
+                >
+                  <FontAwesomeIcon icon={faInstagram} />
+                </a>
+              ) : (
+                ""
+              )}
+            </span>
+          ) : (
+            ""
+          )}
+          {isWebsiteAvailable ? (
+            <a // ウェブサイト
+              className="website"
+              href={website}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <span>
+                {website.replace(/^https?:\/\/([^/]+).*$/, (_, domain) =>
+                  domain.length > 20
+                    ? domain.slice(0, 10) + "..." + domain.slice(-10)
+                    : domain
+                )}
+              </span>
+              <FontAwesomeIcon icon={faExternalLinkAlt} />
+            </a>
+          ) : (
+            ""
+          )}
+        </span>
       ) : (
         ""
       )}
-    </span>
-  </aside>
-)
+    </aside>
+  )
+}

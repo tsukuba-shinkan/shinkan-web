@@ -226,6 +226,12 @@
       @include mq-down() {
         display: none;
       }
+
+      // 最初または最後に1つだけ余る場合は表示しない
+      &:first-child,
+      &:last-child {
+        display: none;
+      }
     }
 
     // 外部リンク
