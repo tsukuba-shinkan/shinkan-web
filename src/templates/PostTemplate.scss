@@ -3,8 +3,11 @@
 
 .post-template {
   $visual-poster-width: 420px;
+  $visual-poster-width-md: 300px;
   $visual-list-width: 65px;
-  $visual-gap: 10px;
+  $visual-list-width-md: 50px;
+  $visual-gap: 15px;
+  $visual-gap-md: 10px;
   $text-margin-lr: 50px;
   $text-margin-lr-sm: 25px;
 
@@ -18,17 +21,22 @@
 
     display: grid;
     grid-template-columns: #{$visual-poster-width + $visual-gap + $visual-list-width} 1fr;
-    grid-gap: 20px;
+    grid-gap: 40px;
     width: calc(100vw - #{$margin-lr * 2});
     max-width: 1100px;
     min-height: calc(100vh - 250px);
     margin: 40px auto;
 
+    @include mq-down(lg) {
+      grid-template-columns: #{$visual-poster-width-md + $visual-gap-md + $visual-list-width-md} 1fr;
+      grid-gap: 30px;
+    }
+
     @include mq-down() {
       $margin-lr-sm: 10px;
 
       grid-template-columns: 1fr;
-      grid-gap: 10px;
+      grid-gap: 40px;
       width: calc(100vw - #{$margin-lr-sm * 2});
       margin: 10px auto;
     }
@@ -42,6 +50,11 @@
       grid-template-columns: $visual-poster-width $visual-list-width;
       grid-gap: $visual-gap;
 
+      @include mq-down(lg) {
+        grid-template-columns: $visual-poster-width-md $visual-list-width-md;
+        grid-gap: $visual-gap-md;
+      }
+
       @include mq-down() {
         position: static;
         grid-template-columns: 1fr;
@@ -49,7 +62,7 @@
     }
 
     &__poster-wrap {
-      border: 1px solid #ddd;
+      border: 1px solid #bbb;
     }
 
     &__header {
@@ -106,8 +119,8 @@
       & > .item {
         width: $visual-list-width;
         height: $visual-list-width;
-        margin-bottom: 10px;
-        border: 1px solid #ddd;
+        margin-bottom: 15px;
+        border: 1px solid #bbb;
 
         @include mq-down() {
           margin-bottom: 0;
@@ -196,19 +209,15 @@
     }
 
     & > .external {
+      margin: 10px 0;
+
       & > .social {
-        margin-right: 10px;
-
-        @include mq-down() {
-          margin-right: 5px;
-        }
-
         & > .icon {
           position: relative;
           display: inline-block;
           width: 48px;
           height: 48px;
-          margin: 10px 10px 10px -10px;
+          margin: 0 10px 0 -10px;
           color: #fff;
           text-align: center;
           vertical-align: middle;
@@ -268,6 +277,10 @@
               color: $color-instagram;
             }
           }
+        }
+
+        & > *:last-child {
+          margin-right: 10px;
         }
       }
 

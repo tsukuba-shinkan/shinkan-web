@@ -200,7 +200,13 @@ const InfoNav = ({
           rel="noopener noreferrer"
           target="_blank"
         >
-          <span>{website.replace(/^https?:\/\//, "")}</span>
+          <span>
+            {website.replace(/^https?:\/\/([^/]+).*$/, (_, domain) =>
+              domain.length > 20
+                ? domain.slice(0, 10) + "..." + domain.slice(-10)
+                : domain
+            )}
+          </span>
           <FontAwesomeIcon icon={faExternalLinkAlt} />
         </a>
       ) : (
