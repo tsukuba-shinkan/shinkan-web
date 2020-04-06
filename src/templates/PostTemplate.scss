@@ -110,13 +110,12 @@
         content: '';
       }
 
-      img {
-        position: absolute;
+      .gatsby-image-wrapper {
+        position: absolute !important;
         top: 0;
         width: 100%;
         height: 100%;
         background-color: #fff; // 透過画像の背景を確保
-        object-fit: cover;
       }
     }
 
@@ -142,10 +141,9 @@
           margin-bottom: 0;
         }
 
-        img {
+        .gatsby-image-wrapper {
           width: 100%;
           height: 100%;
-          object-fit: cover;
         }
       }
     }
