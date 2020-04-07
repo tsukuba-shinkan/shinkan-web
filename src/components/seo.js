@@ -44,6 +44,10 @@ function SEO({ description, lang, meta, title }) {
           content: title,
         },
         {
+          property: `og:site_name`,
+          content: "筑波大学新歓Web",
+        },
+        {
           property: `og:description`,
           content: metaDescription,
         },
@@ -61,7 +65,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: `${title} | 筑波大学新歓Web`,
         },
         {
           name: `twitter:description`,
