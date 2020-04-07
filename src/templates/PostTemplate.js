@@ -194,7 +194,7 @@ const InfoNav = ({
               )}
               {isInstagramAvailable ? (
                 <a // Instagram
-                  href={`https://twitter.com/${instagram}`}
+                  href={`https://www.instagram.com/${instagram}`}
                   rel="noopener noreferrer"
                   target="_blank"
                   className="icon icon--instagram"
