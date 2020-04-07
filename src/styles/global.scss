@@ -1,0 +1,157 @@
+@import 'vars.scss';
+
+/* 全体 */
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap');
+
+* {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+}
+
+main {
+  margin: 0 auto;
+}
+
+img {
+  max-width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+
+  .half {
+    width: 50%;
+  }
+}
+
+/* トップページポスター一覧 */
+.categories {
+  ul.scrollList {
+    /* display: grid; */
+    overflow-x: scroll;
+    white-space: nowrap;
+    list-style: none;
+    -webkit-overflow-scrolling: touch;
+
+    li.scrollItem {
+      display: inline-block;
+      background-color: #fff;
+    }
+  }
+}
+
+/* 団体個別ページ */
+.orgdata {
+  .container {
+    padding: 16px;
+  }
+
+  h2 {
+    margin-bottom: 4px;
+  }
+
+  hr {
+    margin-bottom: 4px;
+  }
+}
+
+.socialLink {
+  img {
+    margin-bottom: 0;
+  }
+
+  img,
+  a {
+    vertical-align: middle;
+  }
+}
+
+.activityIntroduce {
+  margin-top: 12px;
+}
+
+.otherImages {
+  overflow-x: auto;
+  clear: both;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ヘッダー */
+.site-header {
+  height: 80px;
+  background-color: #fff;
+  box-shadow: 0 1.5px 1px 1px rgba(0, 0, 0, 0.5);
+
+  div.headerWrapper {
+    max-width: 960px;
+    height: 80px;
+    padding: 12px;
+    margin: 0 auto;
+    text-align: center;
+
+    a {
+      top: 0;
+      display: inline-block;
+      height: 56px;
+      font-weight: normal;
+      color: black;
+      text-decoration: none;
+
+      .shinkanWebLogo {
+        margin-right: 16px;
+      }
+    }
+
+    img,
+    span {
+      vertical-align: middle;
+    }
+
+    span {
+      font-size: 1.2rem;
+    }
+  }
+
+  #headerLogo {
+    width: auto;
+    height: 48px;
+    margin: 0 16px 0 0;
+  }
+}
+
+/* フッター */
+.site-footer {
+  position: absolute;
+  right: 0;
+  left: 0;
+  padding: 40px;
+  font-size: 0.8rem;
+
+  /* height: 108px; */
+  background-color: #fff;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 25px;
+  }
+
+  #footerLogo {
+    width: auto;
+    height: 48px;
+    margin: 0;
+  }
+
+  #copyright {
+    margin: 0;
+    text-align: center;
+  }
+}

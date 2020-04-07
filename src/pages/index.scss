@@ -1,0 +1,178 @@
+@import '../styles/vars.scss';
+@import '../styles/media.scss';
+
+.page--index {
+  padding: 0.1px 0;
+  background-color: $color-empty-bg;
+}
+
+.org-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  grid-gap: 20px;
+  padding: 0;
+  margin: 20px 40px;
+  list-style-type: none;
+
+  @include mq-down() {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 10px;
+    margin: 20px 10px;
+  }
+
+  // グリッドアイテム
+  &__item {
+    position: relative;
+
+    // 基本マージン（縦方向、横方向）
+    $margin-tb: 15px;
+    $margin-lr: 15px;
+
+    // キャプション部分の上下マージン
+    $caption-margin-tb: 20px;
+
+    // キャプション部分の高さ
+    $caption-height: 105px;
+
+    $color-bg: $color-dark-bg;
+    $color-text: #fff;
+
+    // アスペクト比維持のための擬似要素
+    &::before {
+      display: block;
+      margin-top: 7 / 5 * 100%;
+      content: "";
+    }
+
+    // ポップアップ
+    &__poster {
+      position: absolute;
+      top: -$margin-tb;
+      right: -$margin-lr;
+      width: calc(100% + #{$margin-lr} * 2);
+      height: calc(100% + #{$margin-tb + $caption-height + $caption-margin-tb + max($margin-tb, $caption-margin-tb)}); // アスペクト比が基準外でも規定サイズで表示させる
+      margin: 0;
+      background-color: transparent; // ホバー時以外は消しておく
+      transition: transform 0.2s ease 0s, background-color 0.2s ease 0s;
+
+      // マウスホバー時
+      &:hover {
+        z-index: 999; // 最前面に移動
+        background-color: $color-bg;
+        transform: scale3d(1.1, 1.1, 1);
+
+        figcaption {
+          opacity: 1;
+        }
+      }
+
+      // ポスター画像
+      .gatsby-image-wrapper {
+        display: block;
+        width: calc(100% - #{$margin-lr} * 2);
+        height: calc(100% - #{$margin-tb + $caption-height + $caption-margin-tb + max($margin-tb, $caption-margin-tb)}); // アスペクト比が基準外でも規定サイズで表示させる
+        margin: $margin-tb $margin-lr;
+        object-fit: cover;
+        background: #fff; // 透過画像の背景を確保する
+        border: 1px solid #ddd;
+      }
+
+      figcaption {
+        position: relative;
+        height: $caption-height;
+        margin: $caption-margin-tb $margin-lr;
+        overflow-y: hidden;
+        color: $color-text;
+        pointer-events: none;
+        user-select: none;
+        opacity: 0; // ホバー時以外は消しておく
+        transition: opacity 0.2s ease 0s;
+
+        // テキスト下端を隠すシャドー
+        &::after {
+          position: absolute;
+          bottom: 0;
+          display: block;
+          width: 100%;
+          height: 50%;
+          content: "";
+          background: linear-gradient(transparent, $color-bg);
+        }
+      }
+
+      // スマホ版デザイン使用時
+      @include mq-down() {
+        pointer-events: none;
+      }
+    }
+
+    // 団体名
+    &__name {
+      margin: 0 0 6px;
+      font-size: 15px;
+    }
+
+    // 団体紹介文
+    &__activity-introduce {
+      font-size: 12px;
+    }
+
+    // スマホ版デザイン
+    &__sp-caption {
+      $sp-caption: &; // この階層を参照するセレクタ
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow-y: hidden;
+      user-select: none;
+      background-color: rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      transition: opacity 0.3s ease 0s;
+
+      // 文字情報（団体名、紹介文）
+      &__name,
+      &__activity-introduce {
+        display: inline-block;
+        color: #fff;
+        background-color: $color-dark-bg;
+        transition: transform 0.1s ease-out 0s;
+        transform: scale3d(0, 0, 1);
+      }
+
+      &__name {
+        margin: 20px 10px 15px;
+        font-size: 22px;
+        font-weight: $font-weight-bold;
+      }
+
+      &__activity-introduce {
+        max-height: 160px;
+        margin: 15px 10px;
+        overflow-y: hidden;
+        font-size: 13px;
+        transition-delay: 0.03s;
+      }
+
+      // ホバー時
+      &:hover {
+        opacity: 1;
+
+        // トランジションで動かす
+        #{$sp-caption}__name,
+        #{$sp-caption}__activity-introduce {
+          transform: scale3d(1, 1, 1);
+        }
+      }
+    }
+
+    // PC版デザイン適用時は表示しない
+    @include mq-up() {
+      &__sp-caption {
+        display: none;
+      }
+    }
+  }
+}

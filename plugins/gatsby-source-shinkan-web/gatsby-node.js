@@ -1,8 +1,10 @@
+/* eslint-disable no-console */
 const axios = require("axios")
 const parseCsv = require("csv-parse/lib/sync")
+const { createRemoteFileNode } = require("gatsby-source-filesystem")
 
 exports.sourceNodes = async (
-  { actions, cache, createNodeId, createContentDigest },
+  { actions, cache, createNodeId, createContentDigest, store },
   options
 ) => {
   const { createNode } = actions
@@ -57,16 +59,63 @@ exports.sourceNodes = async (
     if (primaryKeys.includes(data.primaryKey)) continue
 
     const nodeContent = JSON.stringify(data)
-    createNode({
-      ...data,
-      id: createNodeId(`sheet-data-${row[0]}`),
-      parent: null,
-      children: [],
-      internal: {
-        type: "ShinkanWebOrg",
-        content: nodeContent,
-        contentDigest: createContentDigest(nodeContent),
-      },
-    })
+    try {
+      const images = await Promise.all(
+        data.imageUrls.map(async url => {
+          const fileNode = await createRemoteFileNode({
+            url,
+            cache,
+            store,
+            createNode: actions.createNode,
+            createNodeId: createNodeId,
+          })
+          return fileNode
+        })
+      )
+
+      const posterImages = await Promise.all(
+        data.posterImageUrls.map(async url => {
+          const fileNode = await createRemoteFileNode({
+            url,
+            cache,
+            store,
+            createNode: actions.createNode,
+            createNodeId: createNodeId,
+          })
+          return fileNode
+        })
+      )
+
+      const otherImages = await Promise.all(
+        data.otherImageUrls.map(async url => {
+          const fileNode = await createRemoteFileNode({
+            url,
+            cache,
+            store,
+            createNode: actions.createNode,
+            createNodeId: createNodeId,
+          })
+          return fileNode
+        })
+      )
+
+      createNode({
+        ...data,
+        id: createNodeId(`sheet-data-${row[0]}`),
+        parent: null,
+        children: [],
+        internal: {
+          type: "ShinkanWebOrg",
+          content: nodeContent,
+          contentDigest: createContentDigest(nodeContent),
+        },
+        images,
+        posterImages,
+        otherImages,
+      })
+    } catch (e) {
+      console.log("Error", e)
+      continue
+    }
   }
 }

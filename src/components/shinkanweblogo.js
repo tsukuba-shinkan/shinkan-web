@@ -13,20 +13,27 @@ import Img from "gatsby-image"
  * - `useStaticQuery`: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-const Logo = () => {
+const ShinkanWebLogo = () => {
   const data = useStaticQuery(graphql`
     query {
-      placeholderImage: file(relativePath: { eq: "schoollogo.png" }) {
+      placeholderImage: file(
+        relativePath: { eq: "shinkan-web-icon-transparent.png" }
+      ) {
         childImageSharp {
-          fluid(maxWidth: 500) {
-            ...GatsbyImageSharpFluid
+          fixed(height: 56) {
+            ...GatsbyImageSharpFixed
           }
         }
       }
     }
   `)
 
-  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+  return (
+    <Img
+      fixed={data.placeholderImage.childImageSharp.fixed}
+      className="shinkanWebLogo"
+    />
+  )
 }
 
-export default Logo
+export default ShinkanWebLogo

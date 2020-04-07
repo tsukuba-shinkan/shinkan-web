@@ -1,0 +1,29 @@
+$breakpoint-up-md: 'screen and (min-width: 768px)';
+$breakpoint-up-lg: 'screen and (min-width: 1000px)';
+
+$breakpoints-up:(
+  md: $breakpoint-up-md,
+  lg: $breakpoint-up-lg
+) !default;
+
+// min-width（これより大きい幅で適用）
+@mixin mq-up($bp: md) {
+  @media #{map-get($breakpoints-up, $bp)} {
+    @content;
+  }
+}
+
+$breakpoint-down-md: 'screen and (max-width: 767px)';
+$breakpoint-down-lg: 'screen and (max-width: 999px)';
+
+$breakpoints-down:(
+  md: $breakpoint-down-md,
+  lg: $breakpoint-down-lg
+) !default;
+
+// max-width（これより小さい幅で適用）
+@mixin mq-down($bp: md) {
+  @media #{map-get($breakpoints-down, $bp)} {
+    @content;
+  }
+}
