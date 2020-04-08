@@ -12,6 +12,7 @@
   grid-gap: 20px;
   padding: 0;
   margin: 20px 40px;
+  overflow-x: hidden;
   list-style-type: none;
 
   @include mq-down() {
