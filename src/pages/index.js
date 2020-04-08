@@ -37,7 +37,7 @@ const IndexPage = () => {
                   <figcaption>
                     <h2 className="org-list__item__name">{org.name}</h2>
                     <p className="org-list__item__activity-introduce">
-                      {org.activityIntroduce.substr(0, 100) + "..."}
+                      {org.activityIntroduce.slice(0, 100) + "..."}
                     </p>
                   </figcaption>
                 </figure>
@@ -55,7 +55,7 @@ const IndexPage = () => {
                   {org.name}
                 </div>
                 <div className="org-list__item__sp-caption__activity-introduce">
-                  {org.activityIntroduce.substr(0, 100) + "..."}
+                  {org.activityIntroduce.slice(0, 100) + "..."}
                 </div>
               </div>
             </li>

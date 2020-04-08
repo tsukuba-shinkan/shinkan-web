@@ -26,7 +26,7 @@ const Post = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title={org.name} />
+      <SEO title={org.name} description={org.activityIntroduce.slice(0, 200)} />
       <div className="post-template">
         <div className="post-template__container">
           <section // ページ左側: ビジュアルカラム
