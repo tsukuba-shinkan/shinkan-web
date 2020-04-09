@@ -12,7 +12,6 @@
   grid-gap: 20px;
   padding: 0;
   margin: 20px 40px;
-  overflow-x: hidden;
   list-style-type: none;
 
   @include mq-down() {
@@ -26,8 +25,8 @@
     position: relative;
 
     // 基本マージン（縦方向、横方向）
-    $margin-tb: 15px;
-    $margin-lr: 15px;
+    $margin-tb: 10px;
+    $margin-lr: 10px;
 
     // キャプション部分の上下マージン
     $caption-margin-tb: 20px;
