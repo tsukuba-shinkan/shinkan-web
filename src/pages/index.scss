@@ -7,6 +7,12 @@
 
   &__wrap {
     display: grid; // PC・スマホの間でorderで順序を入れ替えてposition: stickyを使うため
+    grid-template-rows: auto auto 1fr; // 表示件数が少ない時にポスターのアスペクト比が歪むのを防ぐため3段作る（3段目には該当要素なし）
+    min-height: calc(100vh - 100px);
+
+    @include mq-down() {
+      grid-template-rows: auto 1fr;
+    }
   }
 }
 
@@ -340,6 +346,19 @@
     grid-gap: 10px;
     margin: 20px 10px;
     overflow-x: hidden;
+  }
+
+  &--empty {
+    min-height: calc(100vh - 100px);
+
+    &::before {
+      display: block;
+      margin: 100px auto;
+      font-size: 40px;
+      color: $color-gray-text;
+      text-align: center;
+      content: "🤔❓🔎";
+    }
   }
 
   // グリッドアイテム

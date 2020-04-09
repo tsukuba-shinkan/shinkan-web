@@ -71,6 +71,11 @@ const IndexPage = () => {
       }
     }
   `)
+
+  const filteredOrgs = orgs.edges.filter(({ node: org }) =>
+    filterWithQueries(org)
+  )
+
   return (
     <Layout>
       <SEO title="ホーム" />
@@ -165,10 +170,9 @@ const IndexPage = () => {
             </div>
           </nav>
 
-          <ul className="org-list">
-            {orgs.edges
-              .filter(({ node: org }) => filterWithQueries(org))
-              .map(({ node: org }) => (
+          {filteredOrgs.length > 0 ? (
+            <ul className="org-list">
+              {filteredOrgs.map(({ node: org }) => (
                 <li className="org-list__item" key={org.primaryKey}>
                   <Link to={`/org/${org.primaryKey}`}>
                     <figure className="org-list__item__poster">
@@ -199,7 +203,12 @@ const IndexPage = () => {
                   </div>
                 </li>
               ))}
-          </ul>
+            </ul>
+          ) : (
+            <div // エンプティステート
+              className="org-list--empty"
+            ></div>
+          )}
         </div>
       </div>
     </Layout>
