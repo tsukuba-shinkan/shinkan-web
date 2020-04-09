@@ -11,17 +11,33 @@ import SEO from "../components/seo"
 
 const IndexPage = () => {
   const [lastTouchedItem, setLastTouchedItem] = useState(null)
+
+  // サーチ文字列: string
   const [queryString, setQueryString] = useState("")
+
+  // 選択中カテゴリ: activityTypes[]
   const [queryCategories, setQueryCategories] = useState([])
+
+  // サーチボックス表示: boolean
   const [searchBoxOpened, setSearchBoxOpened] = useState(false)
+
+  // カテゴリ選択表示: boolean
   const [categorySelectorOpened, setCategorySelectorOpened] = useState(false)
+
+  // サーチボックス<input>への参照
   const filterSearchInputRef = createRef()
 
+  /**
+   * 指定のカテゴリでのフィルタをトグルする
+   */
   const toggleQueryCategory = category =>
     queryCategories.includes(category)
       ? setQueryCategories([...queryCategories].filter(c => c !== category))
       : setQueryCategories([...queryCategories, category])
 
+  /**
+   * 現在のクエリに一致するかを返す
+   * */
   const filterWithQueries = org => {
     const isStringEnable = queryString && queryString.length > 0
     const isCategoryEnable = queryCategories.length > 0
@@ -60,7 +76,7 @@ const IndexPage = () => {
       <SEO title="ホーム" />
 
       <div className="page--index">
-        <div
+        <div // スマホのみ: キャンセルアクションのためのカバー
           className={
             "sm-ui-shadow" +
             ((searchBoxOpened && (!queryString || queryString.length === 0)) ||
@@ -73,13 +89,15 @@ const IndexPage = () => {
             setCategorySelectorOpened(false)
           }}
         ></div>
-        <div className="page--index__wrap">
+        <div // フィルタUIのsticky表示範囲
+          className="page--index__wrap"
+        >
           <nav // フィルターUI
             className={
               "org-list-filter" + (searchBoxOpened ? " is-search-box-mode" : "")
             }
           >
-            <div
+            <div // カテゴリ
               className={
                 "org-list-filter__section org-list-filter__section--category" +
                 (queryCategories.length > 0 ? " is-active" : "")
@@ -94,10 +112,11 @@ const IndexPage = () => {
               <div
                 className={
                   "org-list-filter__section--category__selector" +
-                  (categorySelectorOpened ? " is-open" : "")
+                  (categorySelectorOpened ? " is-open" : "") // スマホ向け: カテゴリUIを開く
                 }
               >
-                <ul>
+                <ul // カテゴリ選択肢
+                >
                   {[
                     activityTypes.PHYSICAL,
                     activityTypes.CULTURE,
@@ -115,7 +134,7 @@ const IndexPage = () => {
                     </li>
                   ))}
                 </ul>
-                <button
+                <button // スマホ向け: 閉じるボタン
                   className="close-button"
                   onClick={() => setCategorySelectorOpened(false)}
                 >
@@ -123,11 +142,13 @@ const IndexPage = () => {
                 </button>
               </div>
             </div>
-            <div className="org-list-filter__section org-list-filter__section--search">
+            <div // サーチボックス
+              className="org-list-filter__section org-list-filter__section--search"
+            >
               <span className="org-list-filter__section--search__icon-container">
                 <FontAwesomeIcon
                   icon={
-                    queryString && queryString.length > 0 ? faTimes : faSearch
+                    queryString && queryString.length > 0 ? faTimes : faSearch // 入力中はクリアボタンにする
                   }
                   onClick={() => {
                     setSearchBoxOpened(!searchBoxOpened)
@@ -143,6 +164,7 @@ const IndexPage = () => {
               />
             </div>
           </nav>
+
           <ul className="org-list">
             {orgs.edges
               .filter(({ node: org }) => filterWithQueries(org))

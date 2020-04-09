@@ -6,16 +6,17 @@
   background-color: $color-empty-bg;
 
   &__wrap {
-    display: grid;
+    display: grid; // PC・スマホの間でorderで順序を入れ替えてposition: stickyを使うため
   }
 }
 
+// キャンセルアクションのためのカバー
 .sm-ui-shadow {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 9998;
-  display: none;
+  display: none; // スマホのみ表示
   width: 100vw;
   height: 100vh;
 
@@ -41,6 +42,7 @@
   margin: 20px 40px 40px 40px;
   text-align: right;
 
+  // スマホUIでの制御
   @include mq-down() {
     position: sticky;
     right: calc((100vw - #{$width-sm}) / 2);
@@ -57,6 +59,7 @@
     border-radius: $height-sm / 2;
     transition: width 0.1s ease 0s, right 0.1s ease 0s;
 
+    // カテゴリ・サーチの間の区切り線
     &::before {
       position: absolute;
       top: $height-sm * 0.2;
@@ -69,6 +72,7 @@
       background-color: #ddd;
     }
 
+    // スマホのみ: 初期状態では検索ボックスを表示させない
     &__section {
       &--search {
         display: block !important;
@@ -79,6 +83,7 @@
       }
     }
 
+    // スマホのみ: 検索ボックスの表示状態 & 他の要素の可視コントロール
     &.is-search-box-mode {
       right: 20px;
       display: block;
@@ -119,6 +124,7 @@
       margin: 0;
     }
 
+    // カテゴリ
     &--category {
       $ref-category-section: &;
 
@@ -148,6 +154,7 @@
       }
 
       &__selector {
+        // スマホは下からのモーダルにする
         @include mq-down() {
           position: fixed;
           right: 0;
@@ -223,6 +230,7 @@
           }
         }
 
+        // スマホのみ: カテゴリ選択モーダルの閉じるボタン
         & > .close-button {
           $size: 35px;
 
@@ -273,6 +281,7 @@
       }
     }
 
+    // サーチボックス
     &--search {
       display: inline-grid;
       grid-template-columns: 22px 120px;
