@@ -6,6 +6,7 @@
   background-color: $color-empty-bg;
 }
 
+// フィルターUI
 .org-list-filter {
   margin: 20px 40px 40px 40px;
   text-align: right;
@@ -17,15 +18,52 @@
     height: $section-height;
     margin: 0 0 0 20px;
     color: $color-gray-text;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: $section-height;
+
+    &--category {
+      font-size: 20px;
+      transition: color 0.1s ease 0s;
+
+      &.is-active {
+        color: $color-primary;
+      }
+
+      & > ul {
+        display: inline-block;
+        margin: 0 0 0 10px;
+        list-style-type: none;
+
+        li {
+          $item-height: 30px;
+
+          display: inline-block;
+          height: $item-height;
+          padding: 0 10px;
+          margin: 0 5px;
+          font-size: 14px;
+          line-height: $item-height;
+          color: $color-gray-text;
+          cursor: pointer;
+          user-select: none;
+          background-color: #ddd;
+          border-radius: $item-height / 2;
+          transition: background-color 0.1s ease 0s, color 0.1s ease 0s;
+
+          &.is-active {
+            color: #fff;
+            background-color: $color-primary;
+          }
+        }
+      }
+    }
 
     &--search {
       display: inline-grid;
       grid-template-columns: 22px 120px;
       padding: 0 15px;
       line-height: $section-height;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: $section-height;
 
       & > input {
         height: $section-height;
