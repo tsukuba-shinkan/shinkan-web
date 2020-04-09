@@ -6,10 +6,100 @@
   background-color: $color-empty-bg;
 }
 
+.sm-ui-shadow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9998;
+  display: none;
+  width: 100vw;
+  height: 100vh;
+
+  @include mq-down() {
+    display: block;
+    pointer-events: none;
+    background-color: transparent;
+    transition: background-color 0.3s ease 0s;
+
+    &.is-active {
+      pointer-events: all;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
 // フィルターUI
 .org-list-filter {
+  $ref-filter-root: &;
+  $width-sm: 150px;
+  $height-sm: 60px;
+
   margin: 20px 40px 40px 40px;
   text-align: right;
+
+  @include mq-down() {
+    position: fixed;
+    right: calc((100vw - #{$width-sm}) / 2);
+    bottom: 20px;
+    z-index: 9999;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: $width-sm;
+    height: $height-sm;
+    margin: auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: $height-sm / 2;
+    transition: width 0.1s ease 0s, right 0.1s ease 0s;
+
+    &::before {
+      position: absolute;
+      top: $height-sm * 0.2;
+      left: 50%;
+      display: inline-block;
+      width: 1px;
+      height: $height-sm * 0.6;
+      vertical-align: middle;
+      content: "";
+      background-color: #ddd;
+    }
+
+    &__section {
+      &--search {
+        display: block !important;
+
+        & > input {
+          display: none;
+        }
+      }
+    }
+
+    &.is-search-box-mode {
+      right: 20px;
+      display: block;
+      width: calc(100vw - 20px * 2);
+
+      &::before {
+        display: none;
+      }
+
+      #{$ref-filter-root}__section {
+        &--category {
+          display: none;
+        }
+
+        &--search {
+          display: grid !important;
+          grid-template-columns: 40px 1fr;
+
+          & > input {
+            display: inline-block;
+            height: $height-sm;
+          }
+        }
+      }
+    }
+  }
 
   &__section {
     $section-height: 40px;
@@ -19,38 +109,160 @@
     margin: 0 0 0 20px;
     color: $color-gray-text;
 
-    &--category {
-      font-size: 20px;
-      transition: color 0.1s ease 0s;
+    @include mq-down() {
+      height: $height-sm;
+      margin: 0;
+    }
 
-      &.is-active {
-        color: $color-primary;
+    &--category {
+      $ref-category-section: &;
+
+      display: inline-grid;
+      grid-template-columns: 20px 1fr;
+
+      @include mq-down() {
+        display: inline-block;
       }
 
-      & > ul {
-        display: inline-block;
-        margin: 0 0 0 10px;
-        list-style-type: none;
+      &.is-active {
+        #{$ref-category-section}__icon-container {
+          color: $color-primary;
+        }
+      }
 
-        li {
-          $item-height: 30px;
+      &__icon-container {
+        display: block;
+        font-size: 20px;
+        transition: color 0.1s ease 0s;
 
+        @include mq-down() {
+          font-size: 20px;
+          line-height: $height-sm;
+          text-align: center;
+        }
+      }
+
+      &__selector {
+        @include mq-down() {
+          position: fixed;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          width: calc(100vw - 30px);
+          max-width: 400px;
+          padding: 15px 20px 30px 20px;
+          margin: auto;
+          text-align: left;
+          background-color: #fff;
+          border-radius: 10px 10px 0 0;
+          transition: transform 0.2s ease 0s;
+          transform: translate3d(0, 100%, 0);
+
+          &.is-open {
+            transform: translate3d(0, 0, 0);
+          }
+
+          &::before {
+            display: block;
+            margin: 10px 0 30px 0;
+            font-size: 18px;
+            text-align: center;
+            content: "絞り込み";
+          }
+        }
+
+        & > ul {
           display: inline-block;
-          height: $item-height;
-          padding: 0 10px;
-          margin: 0 5px;
-          font-size: 14px;
-          line-height: $item-height;
-          color: $color-gray-text;
-          cursor: pointer;
-          user-select: none;
-          background-color: #ddd;
-          border-radius: $item-height / 2;
-          transition: background-color 0.1s ease 0s, color 0.1s ease 0s;
+          padding: 0;
+          margin: 0 0 0 10px;
+          list-style-type: none;
 
-          &.is-active {
-            color: #fff;
-            background-color: $color-primary;
+          @include mq-down() {
+            display: block;
+            margin: 0;
+          }
+
+          li {
+            $item-height: 30px;
+            $item-height-sm: 48px;
+
+            display: inline-block;
+            height: $item-height;
+            padding: 0 10px;
+            margin: 0 5px;
+            font-size: 14px;
+            line-height: $item-height;
+            color: $color-gray-text;
+            text-align: center;
+            cursor: pointer;
+            user-select: none;
+            background-color: #ddd;
+            border-radius: $item-height / 2;
+            transition: background-color 0.1s ease 0s, color 0.1s ease 0s;
+
+            @include mq-down() {
+              display: block;
+              width: auto;
+              height: $item-height-sm;
+              padding: 0 20px;
+              margin: 5px 5px;
+              font-size: 16px;
+              line-height: $item-height-sm;
+              border-radius: $item-height-sm / 2;
+            }
+
+            &.is-active {
+              color: #fff;
+              background-color: $color-primary;
+            }
+          }
+        }
+
+        & > .close-button {
+          $size: 35px;
+
+          position: relative;
+          display: block;
+          width: 48px;
+          height: 48px;
+          padding: 0;
+          margin: 20px auto 0 auto;
+          overflow: hidden;
+          text-indent: -1000px;
+
+          @include mq-up() {
+            display: none;
+          }
+
+          &::before,
+          &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: block;
+            width: $size;
+            height: $size;
+            margin: auto;
+            color: $color-gray-text;
+          }
+
+          &::before {
+            content: "";
+            background-color: transparent;
+            border: 1px solid $color-gray-text;
+            border-radius: $size / 2;
+            outline: none;
+            appearance: none;
+          }
+
+          &::after {
+            font-size: $size / 2;
+            line-height: $size;
+            text-align: center;
+            text-indent: 0;
+            content: "×";
           }
         }
       }
@@ -65,6 +277,12 @@
       border: 1px solid #ddd;
       border-radius: $section-height;
 
+      @include mq-down() {
+        line-height: $height-sm;
+        background-color: transparent;
+        border: none;
+      }
+
       & > input {
         height: $section-height;
         margin: 0 10px;
@@ -78,7 +296,13 @@
       }
 
       &__icon-container {
+        display: block;
         text-align: center;
+
+        @include mq-down() {
+          font-size: 20px;
+          text-align: center;
+        }
 
         * {
           vertical-align: 0;

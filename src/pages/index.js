@@ -11,8 +11,10 @@ import SEO from "../components/seo"
 
 const IndexPage = () => {
   const [lastTouchedItem, setLastTouchedItem] = useState(null)
-  const [queryString, setQueryString] = useState()
+  const [queryString, setQueryString] = useState("")
   const [queryCategories, setQueryCategories] = useState([])
+  const [searchBoxOpened, setSearchBoxOpened] = useState(false)
+  const [categorySelectorOpened, setCategorySelectorOpened] = useState(false)
   const filterSearchInputRef = createRef()
 
   const toggleQueryCategory = category =>
@@ -58,34 +60,67 @@ const IndexPage = () => {
       <SEO title="ホーム" />
 
       <div className="page--index">
+        <div
+          className={
+            "sm-ui-shadow" +
+            ((searchBoxOpened && (!queryString || queryString.length === 0)) ||
+            categorySelectorOpened
+              ? " is-active"
+              : "")
+          }
+          onClick={() => {
+            setSearchBoxOpened(false)
+            setCategorySelectorOpened(false)
+          }}
+        ></div>
         <nav // フィルターUI
-          className="org-list-filter"
+          className={
+            "org-list-filter" + (searchBoxOpened ? " is-search-box-mode" : "")
+          }
         >
           <div
             className={
-              "org-list-filter__section org-list-filter__section--category " +
-              (queryCategories.length > 0 ? "is-active" : "")
+              "org-list-filter__section org-list-filter__section--category" +
+              (queryCategories.length > 0 ? " is-active" : "")
             }
           >
-            <FontAwesomeIcon icon={faFilter} />
-            <ul>
-              {[
-                activityTypes.PHYSICAL,
-                activityTypes.CULTURE,
-                activityTypes.ART,
-                activityTypes.OTHER,
-              ].map(category => (
-                <li
-                  key={category}
-                  onClick={() => toggleQueryCategory(category)}
-                  className={
-                    queryCategories.includes(category) ? "is-active" : ""
-                  }
-                >
-                  {category}
-                </li>
-              ))}
-            </ul>
+            <span
+              className="org-list-filter__section--category__icon-container"
+              onClick={() => setCategorySelectorOpened(true)}
+            >
+              <FontAwesomeIcon icon={faFilter} />
+            </span>
+            <div
+              className={
+                "org-list-filter__section--category__selector" +
+                (categorySelectorOpened ? " is-open" : "")
+              }
+            >
+              <ul>
+                {[
+                  activityTypes.PHYSICAL,
+                  activityTypes.CULTURE,
+                  activityTypes.ART,
+                  activityTypes.OTHER,
+                ].map(category => (
+                  <li
+                    key={category}
+                    onClick={() => toggleQueryCategory(category)}
+                    className={
+                      queryCategories.includes(category) ? "is-active" : ""
+                    }
+                  >
+                    {category}
+                  </li>
+                ))}
+              </ul>
+              <button
+                className="close-button"
+                onClick={() => setCategorySelectorOpened(false)}
+              >
+                閉じる
+              </button>
+            </div>
           </div>
           <div className="org-list-filter__section org-list-filter__section--search">
             <span className="org-list-filter__section--search__icon-container">
@@ -94,6 +129,7 @@ const IndexPage = () => {
                   queryString && queryString.length > 0 ? faTimes : faSearch
                 }
                 onClick={() => {
+                  setSearchBoxOpened(!searchBoxOpened)
                   setQueryString()
                   filterSearchInputRef.current.focus()
                 }}
