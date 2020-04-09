@@ -6,19 +6,63 @@
   background-color: $color-empty-bg;
 }
 
+.org-list-filter {
+  margin: 20px 40px 40px 40px;
+  text-align: right;
+
+  &__section {
+    $section-height: 40px;
+
+    display: inline-block;
+    height: $section-height;
+    margin: 0 0 0 20px;
+    color: $color-gray-text;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: $section-height;
+
+    &--search {
+      display: inline-grid;
+      grid-template-columns: 22px 120px;
+      padding: 0 15px;
+      line-height: $section-height;
+
+      & > input {
+        height: $section-height;
+        margin: 0 10px;
+        font-size: 15px;
+        color: #000;
+        background: transparent;
+        border: none;
+        outline: 0;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+
+      &__icon-container {
+        text-align: center;
+
+        * {
+          vertical-align: 0;
+        }
+      }
+    }
+  }
+}
+
 .org-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
   grid-gap: 20px;
   padding: 0;
   margin: 20px 40px;
-  overflow-x: hidden;
   list-style-type: none;
 
   @include mq-down() {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     grid-gap: 10px;
     margin: 20px 10px;
+    overflow-x: hidden;
   }
 
   // グリッドアイテム
