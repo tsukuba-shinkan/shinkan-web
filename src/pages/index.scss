@@ -4,6 +4,10 @@
 .page--index {
   padding: 0.1px 0;
   background-color: $color-empty-bg;
+
+  &__wrap {
+    display: grid;
+  }
 }
 
 .sm-ui-shadow {
@@ -38,15 +42,16 @@
   text-align: right;
 
   @include mq-down() {
-    position: fixed;
+    position: sticky;
     right: calc((100vw - #{$width-sm}) / 2);
     bottom: 20px;
     z-index: 9999;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    order: 10; // 順番入れ替えないとposition: stickyが効かない
     width: $width-sm;
     height: $height-sm;
-    margin: auto;
+    margin: auto auto 20px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: $height-sm / 2;
@@ -314,6 +319,7 @@
 
 .org-list {
   display: grid;
+  flex: 1 1 auto;
   grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
   grid-gap: 20px;
   padding: 0;
@@ -379,9 +385,9 @@
         width: calc(100% - #{$margin-lr} * 2);
         height: calc(100% - #{$margin-tb + $caption-height + $caption-margin-tb + max($margin-tb, $caption-margin-tb)}); // アスペクト比が基準外でも規定サイズで表示させる
         margin: $margin-tb $margin-lr;
-        object-fit: cover;
         background: #fff; // 透過画像の背景を確保する
         border: 1px solid #ddd;
+        object-fit: cover;
       }
 
       figcaption {

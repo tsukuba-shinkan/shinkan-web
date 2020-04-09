@@ -73,110 +73,112 @@ const IndexPage = () => {
             setCategorySelectorOpened(false)
           }}
         ></div>
-        <nav // フィルターUI
-          className={
-            "org-list-filter" + (searchBoxOpened ? " is-search-box-mode" : "")
-          }
-        >
-          <div
+        <div className="page--index__wrap">
+          <nav // フィルターUI
             className={
-              "org-list-filter__section org-list-filter__section--category" +
-              (queryCategories.length > 0 ? " is-active" : "")
+              "org-list-filter" + (searchBoxOpened ? " is-search-box-mode" : "")
             }
           >
-            <span
-              className="org-list-filter__section--category__icon-container"
-              onClick={() => setCategorySelectorOpened(true)}
-            >
-              <FontAwesomeIcon icon={faFilter} />
-            </span>
             <div
               className={
-                "org-list-filter__section--category__selector" +
-                (categorySelectorOpened ? " is-open" : "")
+                "org-list-filter__section org-list-filter__section--category" +
+                (queryCategories.length > 0 ? " is-active" : "")
               }
             >
-              <ul>
-                {[
-                  activityTypes.PHYSICAL,
-                  activityTypes.CULTURE,
-                  activityTypes.ART,
-                  activityTypes.OTHER,
-                ].map(category => (
-                  <li
-                    key={category}
-                    onClick={() => toggleQueryCategory(category)}
-                    className={
-                      queryCategories.includes(category) ? "is-active" : ""
-                    }
-                  >
-                    {category}
-                  </li>
-                ))}
-              </ul>
-              <button
-                className="close-button"
-                onClick={() => setCategorySelectorOpened(false)}
+              <span
+                className="org-list-filter__section--category__icon-container"
+                onClick={() => setCategorySelectorOpened(true)}
               >
-                閉じる
-              </button>
-            </div>
-          </div>
-          <div className="org-list-filter__section org-list-filter__section--search">
-            <span className="org-list-filter__section--search__icon-container">
-              <FontAwesomeIcon
-                icon={
-                  queryString && queryString.length > 0 ? faTimes : faSearch
+                <FontAwesomeIcon icon={faFilter} />
+              </span>
+              <div
+                className={
+                  "org-list-filter__section--category__selector" +
+                  (categorySelectorOpened ? " is-open" : "")
                 }
-                onClick={() => {
-                  setSearchBoxOpened(!searchBoxOpened)
-                  setQueryString()
-                  filterSearchInputRef.current.focus()
-                }}
-              />
-            </span>
-            <input
-              ref={filterSearchInputRef}
-              onChange={e => setQueryString(e.target.value)}
-              value={queryString || ""}
-            />
-          </div>
-        </nav>
-        <ul className="org-list">
-          {orgs.edges
-            .filter(({ node: org }) => filterWithQueries(org))
-            .map(({ node: org }) => (
-              <li className="org-list__item" key={org.primaryKey}>
-                <Link to={`/org/${org.primaryKey}`}>
-                  <figure className="org-list__item__poster">
-                    <Fluid200 url={org.posterImageUrls[0]} alt="" />
-                    <figcaption>
-                      <h2 className="org-list__item__name">{org.name}</h2>
-                      <p className="org-list__item__activity-introduce">
-                        {org.activityIntroduce.slice(0, 100) + "..."}
-                      </p>
-                    </figcaption>
-                  </figure>
-                </Link>
-
-                <div // スマホ用
-                  className="org-list__item__sp-caption"
-                  onClick={() => {
-                    if (lastTouchedItem === org.primaryKey)
-                      navigate(`/org/${org.primaryKey}`)
-                    setLastTouchedItem(org.primaryKey)
-                  }}
+              >
+                <ul>
+                  {[
+                    activityTypes.PHYSICAL,
+                    activityTypes.CULTURE,
+                    activityTypes.ART,
+                    activityTypes.OTHER,
+                  ].map(category => (
+                    <li
+                      key={category}
+                      onClick={() => toggleQueryCategory(category)}
+                      className={
+                        queryCategories.includes(category) ? "is-active" : ""
+                      }
+                    >
+                      {category}
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  className="close-button"
+                  onClick={() => setCategorySelectorOpened(false)}
                 >
-                  <div className="org-list__item__sp-caption__name">
-                    {org.name}
+                  閉じる
+                </button>
+              </div>
+            </div>
+            <div className="org-list-filter__section org-list-filter__section--search">
+              <span className="org-list-filter__section--search__icon-container">
+                <FontAwesomeIcon
+                  icon={
+                    queryString && queryString.length > 0 ? faTimes : faSearch
+                  }
+                  onClick={() => {
+                    setSearchBoxOpened(!searchBoxOpened)
+                    setQueryString()
+                    filterSearchInputRef.current.focus()
+                  }}
+                />
+              </span>
+              <input
+                ref={filterSearchInputRef}
+                onChange={e => setQueryString(e.target.value)}
+                value={queryString || ""}
+              />
+            </div>
+          </nav>
+          <ul className="org-list">
+            {orgs.edges
+              .filter(({ node: org }) => filterWithQueries(org))
+              .map(({ node: org }) => (
+                <li className="org-list__item" key={org.primaryKey}>
+                  <Link to={`/org/${org.primaryKey}`}>
+                    <figure className="org-list__item__poster">
+                      <Fluid200 url={org.posterImageUrls[0]} alt="" />
+                      <figcaption>
+                        <h2 className="org-list__item__name">{org.name}</h2>
+                        <p className="org-list__item__activity-introduce">
+                          {org.activityIntroduce.slice(0, 100) + "..."}
+                        </p>
+                      </figcaption>
+                    </figure>
+                  </Link>
+
+                  <div // スマホ用
+                    className="org-list__item__sp-caption"
+                    onClick={() => {
+                      if (lastTouchedItem === org.primaryKey)
+                        navigate(`/org/${org.primaryKey}`)
+                      setLastTouchedItem(org.primaryKey)
+                    }}
+                  >
+                    <div className="org-list__item__sp-caption__name">
+                      {org.name}
+                    </div>
+                    <div className="org-list__item__sp-caption__activity-introduce">
+                      {org.activityIntroduce.slice(0, 100) + "..."}
+                    </div>
                   </div>
-                  <div className="org-list__item__sp-caption__activity-introduce">
-                    {org.activityIntroduce.slice(0, 100) + "..."}
-                  </div>
-                </div>
-              </li>
-            ))}
-        </ul>
+                </li>
+              ))}
+          </ul>
+        </div>
       </div>
     </Layout>
   )
