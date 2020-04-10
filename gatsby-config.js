@@ -6,6 +6,7 @@ module.exports = {
     description: `筑波大学内の学生団体情報ポータルサイトです。`,
     author: `@tsukuba_shinkan`,
   },
+  pathPrefix: process.env.PATH_PREFIX || `/`,
   plugins: [
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
