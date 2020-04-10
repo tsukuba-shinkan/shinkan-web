@@ -57,7 +57,10 @@ const IndexPage = () => {
       !queryCategories.includes(normalizeActivityType(org.activityType))
     ) {
       return false
-    } else if (isStringEnable && org.name.indexOf(queryString) === -1) {
+    } else if (
+      isStringEnable &&
+      org.name.indexOf(queryString.replace(/^\s+|\s+$/gi, "")) === -1 // 先頭・末尾の空白文字は無視する
+    ) {
       return false
     }
 
