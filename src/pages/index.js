@@ -28,12 +28,20 @@ const IndexPage = () => {
   const filterSearchInputRef = createRef()
 
   /**
-   * 指定のカテゴリでのフィルタをトグルする
+   * 指定のカテゴリでのフィルタを追加する
    */
-  const toggleQueryCategory = category =>
+  const addQueryCategory = category =>
+    !queryCategories.includes(category)
+      ? setQueryCategories([...queryCategories, category])
+      : false
+
+  /**
+   * 指定のカテゴリでのフィルタを削除する
+   */
+  const removeQueryCategory = category =>
     queryCategories.includes(category)
       ? setQueryCategories([...queryCategories].filter(c => c !== category))
-      : setQueryCategories([...queryCategories, category])
+      : false
 
   /**
    * 現在のクエリに一致するかを返す
@@ -130,7 +138,11 @@ const IndexPage = () => {
                   ].map(category => (
                     <li
                       key={category}
-                      onClick={() => toggleQueryCategory(category)}
+                      onClick={() =>
+                        queryCategories.includes(category)
+                          ? removeQueryCategory(category)
+                          : addQueryCategory(category)
+                      }
                       className={
                         queryCategories.includes(category) ? "is-active" : ""
                       }
