@@ -363,6 +363,14 @@
       text-align: center;
       content: "🤔❓🔎";
     }
+
+    p {
+      margin: 10px 20px;
+      font-size: 12px;
+      line-height: 1.7em;
+      color: $color-gray-text;
+      text-align: center;
+    }
   }
 
   // グリッドアイテム
