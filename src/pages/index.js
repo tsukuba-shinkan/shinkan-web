@@ -88,9 +88,9 @@ const IndexPage = () => {
     }
   `)
 
-  const filteredOrgs = orgs.edges.sort(shuffle).filter(({ node: org }) =>
-    filterWithQueries(org)
-  )
+  const filteredOrgs = orgs.edges
+    .sort(shuffle)
+    .filter(({ node: org }) => filterWithQueries(org))
 
   return (
     <Layout>
