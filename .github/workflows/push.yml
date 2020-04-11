@@ -33,6 +33,16 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
+    - name: "Use cache for Gatsby /.cache"
+      uses: actions/cache@v1
+      with:
+        path: ./.cache
+        key: ${{ runner.os }}-gatsby-dev-dot-cache-${{ hashFiles('**/package.json') }}
+    - name: "Use cache for Gatsby /public"
+      uses: actions/cache@v1
+      with:
+        path: ./public
+        key: ${{ runner.os }}-gatsby-dev-public-${{ hashFiles('**/package.json') }}
     - uses: actions/setup-node@v1
       with:
         node-version: 12.x
@@ -56,6 +66,20 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
+    - name: "Use cache for Gatsby .cache"
+      uses: actions/cache@v1
+      if: github.ref == 'refs/heads/master'
+      with:
+        path: ./.cache
+        key: ${{ runner.os }}-gatsby-prod-dot-cache-${{ hashFiles('**/package.json') }}
+    - name: "Use cache for Gatsby /public"
+      uses: actions/cache@v1
+      with:
+        path: ./public
+        key: ${{ runner.os }}-gatsby-prod-public-${{ hashFiles('**/package.json') }}
+    - name: "Clear source data"
+      shell: bash
+      run: rm -rf ./.cache/caches/@tsukuba-shinkan
     - uses: actions/setup-node@v1
       if: github.ref == 'refs/heads/master'
       with:
