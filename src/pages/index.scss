@@ -42,8 +42,9 @@
 // フィルターUI
 .org-list-filter {
   $ref-filter-root: &;
-  $width-sm: 150px;
+  $width-sm: 200px;
   $height-sm: 60px;
+  $section-width-aspect-sm: 2.2 / 1; // モバイル版UI左右セクションの幅比率
 
   margin: 20px 40px 40px 40px;
   text-align: right;
@@ -55,7 +56,7 @@
     bottom: 20px;
     z-index: 9999;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: #{$section-width-aspect-sm}fr 1fr;
     order: 10; // 順番入れ替えないとposition: stickyが効かない
     width: $width-sm;
     height: $height-sm;
@@ -69,7 +70,7 @@
     &::before {
       position: absolute;
       top: $height-sm * 0.2;
-      left: 50%;
+      left: #{$section-width-aspect-sm / ($section-width-aspect-sm + 1) * 100%};
       display: inline-block;
       width: 1px;
       height: $height-sm * 0.6;
@@ -154,8 +155,18 @@
 
         @include mq-down() {
           font-size: 20px;
-          line-height: $height-sm;
+          line-height: $height-sm * 0.9; // 等倍ではちょっと下に行ってしまうので修正
           text-align: center;
+
+          svg {
+            vertical-align: auto;
+          }
+
+          &::after {
+            margin-left: 10px;
+            font-size: 14px;
+            content: "絞り込み";
+          }
         }
       }
 
@@ -168,7 +179,7 @@
           left: 0;
           width: calc(100vw - 30px);
           max-width: 400px;
-          padding: 15px 20px 30px 20px;
+          padding: 30px 20px;
           margin: auto;
           text-align: left;
           background-color: #fff;
@@ -178,14 +189,6 @@
 
           &.is-open {
             transform: translate3d(0, 0, 0);
-          }
-
-          &::before {
-            display: block;
-            margin: 10px 0 30px 0;
-            font-size: 18px;
-            text-align: center;
-            content: "絞り込み";
           }
         }
 
@@ -302,6 +305,7 @@
       border-radius: $section-height;
 
       @include mq-down() {
+        padding: 0 17px 0 13px;
         line-height: $height-sm;
         background-color: transparent;
         border: none;
