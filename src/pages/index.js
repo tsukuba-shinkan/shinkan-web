@@ -1,4 +1,4 @@
-import React, { useState, createRef } from "react"
+import React, { useState, useEffect, createRef } from "react"
 import { graphql, useStaticQuery, Link, navigate } from "gatsby"
 import "./index.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -11,6 +11,11 @@ import SEO from "../components/seo"
 
 const IndexPage = () => {
   const [lastTouchedItem, setLastTouchedItem] = useState(null)
+
+  // ポスターのシャッフル
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+  const shuffle = () => (mounted ? 1 : Math.random() - 0.5)
 
   // サーチ文字列: string
   const [queryString, setQueryString] = useState("")
@@ -83,9 +88,9 @@ const IndexPage = () => {
     }
   `)
 
-  const filteredOrgs = orgs.edges.filter(({ node: org }) =>
-    filterWithQueries(org)
-  )
+  const filteredOrgs = orgs.edges
+    .sort(shuffle)
+    .filter(({ node: org }) => filterWithQueries(org))
 
   return (
     <Layout>
