@@ -92,7 +92,7 @@ jobs:
       run: npm run build --prefix-paths
       env:
         SRC_FILE_ID: 1SDP5wlB7DtIa5pP1R7Idpw91RwbFUZuJczkW2kab9Vc 
-        PREFIX_PATHS: /~shinkan-web
+        PATH_PREFIX: /~shinkan-web
     - name: install lftp
       if: github.ref == 'refs/heads/master'
       run: sudo apt-get update && sudo apt-get install -y lftp
@@ -106,7 +106,7 @@ jobs:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
     - name: deploy with lftp
       if: github.ref == 'refs/heads/master'
-      run: lftp -e "set net:max-retries 1; set sftp:connect-program \"ssh -a -x -p $SSH_PORT -i .ssh/id_rsa -o StrictHostKeyChecking=no\"; connect sftp://$SSH_USER:@$SSH_HOST; mirror --delete --only-newer -eR -x .git -x .ssh ./public $SSH_DIR; quit"
+      run: lftp -e "set net:max-retries 1; set sftp:connect-program \"ssh -a -x -p $SSH_PORT -i .ssh/id_rsa -o StrictHostKeyChecking=no\"; connect sftp://$SSH_USER:@$SSH_HOST; mirror --delete --only-newer -eR -x .git -x .ssh -x .htaccess ./public/ $SSH_DIR; quit"
       env:
         SSH_PORT: 22
         SSH_USER: shinkan-web
