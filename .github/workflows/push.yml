@@ -8,8 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: "Use cache for npm"
-      uses: actions/cache@v1
+    - uses: actions/cache@v1
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -28,18 +27,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: "Use cache for npm"
-      uses: actions/cache@v1
+    - uses: actions/cache@v1
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
-    - name: "Use cache for Gatsby"
-      uses: actions/cache@v1
-      with:
-        path: ./.cache
-        key: ${{ runner.os }}-gatsby-dev-${{ hashFiles('**/package.json') }}
     - uses: actions/setup-node@v1
       with:
         node-version: 12.x
@@ -56,23 +49,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       if: github.ref == 'refs/heads/master'
-    - name: "Use cache for npm"
-      uses: actions/cache@v1
+    - uses: actions/cache@v1
       if: github.ref == 'refs/heads/master'
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
-    - name: "Use cache for Gatsby"
-      uses: actions/cache@v1
-      if: github.ref == 'refs/heads/master'
-      with:
-        path: ./.cache
-        key: ${{ runner.os }}-gatsby-prod-${{ hashFiles('**/package.json') }}
-    - name: "Clear source data"
-      shell: bash
-      run: rm -rf ./.cache/caches/@tsukuba-shinkan
     - uses: actions/setup-node@v1
       if: github.ref == 'refs/heads/master'
       with:
