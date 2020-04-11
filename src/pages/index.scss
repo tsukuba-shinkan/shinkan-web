@@ -4,10 +4,345 @@
 .page--index {
   padding: 0.1px 0;
   background-color: $color-empty-bg;
+
+  &__wrap {
+    display: grid; // PC・スマホの間でorderで順序を入れ替えてposition: stickyを使うため
+    grid-template-rows: auto auto 1fr; // 表示件数が少ない時にポスターのアスペクト比が歪むのを防ぐため3段作る（3段目には該当要素なし）
+    min-height: calc(100vh - 100px);
+
+    @include mq-down() {
+      grid-template-rows: auto 1fr;
+    }
+  }
+}
+
+// キャンセルアクションのためのカバー
+.sm-ui-shadow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9998;
+  display: none; // スマホのみ表示
+  width: 100vw;
+  height: 100vh;
+
+  @include mq-down() {
+    display: block;
+    pointer-events: none;
+    background-color: transparent;
+    transition: background-color 0.3s ease 0s;
+
+    &.is-active {
+      pointer-events: all;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
+// フィルターUI
+.org-list-filter {
+  $ref-filter-root: &;
+  $width-sm: 200px;
+  $height-sm: 60px;
+  $section-width-aspect-sm: 2.2 / 1; // モバイル版UI左右セクションの幅比率
+
+  margin: 20px 40px 40px 40px;
+  text-align: right;
+
+  // スマホUIでの制御
+  @include mq-down() {
+    position: sticky;
+    right: calc((100vw - #{$width-sm}) / 2);
+    bottom: 20px;
+    z-index: 9999;
+    display: grid;
+    grid-template-columns: #{$section-width-aspect-sm}fr 1fr;
+    order: 10; // 順番入れ替えないとposition: stickyが効かない
+    width: $width-sm;
+    height: $height-sm;
+    margin: auto auto 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: $height-sm / 2;
+    transition: width 0.1s ease 0s, right 0.1s ease 0s;
+
+    // カテゴリ・サーチの間の区切り線
+    &::before {
+      position: absolute;
+      top: $height-sm * 0.2;
+      left: #{$section-width-aspect-sm / ($section-width-aspect-sm + 1) * 100%};
+      display: inline-block;
+      width: 1px;
+      height: $height-sm * 0.6;
+      vertical-align: middle;
+      content: "";
+      background-color: #ddd;
+    }
+
+    // スマホのみ: 初期状態では検索ボックスを表示させない
+    &__section {
+      &--search {
+        display: block !important;
+
+        & > input {
+          display: none;
+        }
+      }
+    }
+
+    // スマホのみ: 検索ボックスの表示状態 & 他の要素の可視コントロール
+    &.is-search-box-mode {
+      right: 20px;
+      display: block;
+      width: calc(100vw - 20px * 2);
+
+      &::before {
+        display: none;
+      }
+
+      #{$ref-filter-root}__section {
+        &--category {
+          display: none;
+        }
+
+        &--search {
+          display: grid !important;
+          grid-template-columns: 40px 1fr;
+
+          & > input {
+            display: inline-block;
+            height: $height-sm;
+          }
+        }
+      }
+    }
+  }
+
+  &__section {
+    $section-height: 40px;
+
+    display: inline-block;
+    height: $section-height;
+    margin: 0 0 0 20px;
+    color: $color-gray-text;
+
+    @include mq-down() {
+      height: $height-sm;
+      margin: 0;
+    }
+
+    // カテゴリ
+    &--category {
+      $ref-category-section: &;
+
+      display: inline-grid;
+      grid-template-columns: 20px 1fr;
+
+      @include mq-down() {
+        display: inline-block;
+      }
+
+      &.is-active {
+        #{$ref-category-section}__icon-container {
+          color: $color-primary;
+        }
+      }
+
+      &__icon-container {
+        display: block;
+        font-size: 20px;
+        transition: color 0.1s ease 0s;
+
+        @include mq-down() {
+          font-size: 20px;
+          line-height: $height-sm * 0.9; // 等倍ではちょっと下に行ってしまうので修正
+          text-align: center;
+
+          svg {
+            vertical-align: auto;
+          }
+
+          &::after {
+            margin-left: 10px;
+            font-size: 14px;
+            content: "絞り込み";
+          }
+        }
+      }
+
+      &__selector {
+        // スマホは下からのモーダルにする
+        @include mq-down() {
+          position: fixed;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          width: calc(100vw - 30px);
+          max-width: 400px;
+          padding: 30px 20px;
+          margin: auto;
+          text-align: left;
+          background-color: #fff;
+          border-radius: 10px 10px 0 0;
+          transition: transform 0.2s ease 0s;
+          transform: translate3d(0, 100%, 0);
+
+          &.is-open {
+            transform: translate3d(0, 0, 0);
+          }
+        }
+
+        & > ul {
+          display: inline-block;
+          padding: 0;
+          margin: 0 0 0 10px;
+          list-style-type: none;
+
+          @include mq-down() {
+            display: block;
+            margin: 0;
+          }
+
+          li {
+            $item-height: 30px;
+            $item-height-sm: 48px;
+
+            display: inline-block;
+            height: $item-height;
+            padding: 0 10px;
+            margin: 0 5px;
+            font-size: 14px;
+            line-height: $item-height;
+            color: $color-gray-text;
+            text-align: center;
+            cursor: pointer;
+            user-select: none;
+            background-color: #ddd;
+            border-radius: $item-height / 2;
+            transition: background-color 0.1s ease 0s, color 0.1s ease 0s;
+
+            @include mq-down() {
+              display: block;
+              width: auto;
+              height: $item-height-sm;
+              padding: 0 20px;
+              margin: 5px 5px;
+              font-size: 16px;
+              line-height: $item-height-sm;
+              border-radius: $item-height-sm / 2;
+            }
+
+            &.is-active {
+              color: #fff;
+              background-color: $color-primary;
+            }
+          }
+        }
+
+        // スマホのみ: カテゴリ選択モーダルの閉じるボタン
+        & > .close-button {
+          $size: 35px;
+
+          appearance: none;
+          position: relative;
+          display: block;
+          width: 48px;
+          height: 48px;
+          padding: 0;
+          margin: 20px auto 0 auto;
+          overflow: hidden;
+          text-indent: -1000px;
+          background-color: transparent;
+          border: none;
+          outline: none;
+
+          @include mq-up() {
+            display: none;
+          }
+
+          &::before,
+          &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: block;
+            width: $size;
+            height: $size;
+            margin: auto;
+            color: $color-gray-text;
+          }
+
+          &::before {
+            content: "";
+            background-color: transparent;
+            border: 1px solid $color-gray-text;
+            border-radius: $size / 2;
+            outline: none;
+            appearance: none;
+          }
+
+          &::after {
+            font-size: $size / 2;
+            line-height: $size;
+            text-align: center;
+            text-indent: 0;
+            content: "×";
+          }
+        }
+      }
+    }
+
+    // サーチボックス
+    &--search {
+      display: inline-grid;
+      grid-template-columns: 22px 120px;
+      padding: 0 15px;
+      line-height: $section-height;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: $section-height;
+
+      @include mq-down() {
+        padding: 0 17px 0 13px;
+        line-height: $height-sm;
+        background-color: transparent;
+        border: none;
+      }
+
+      & > input {
+        height: $section-height;
+        margin: 0 10px;
+        font-size: 15px;
+        color: #000;
+        background: transparent;
+        border: none;
+        outline: 0;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+
+      &__icon-container {
+        display: block;
+        text-align: center;
+
+        @include mq-down() {
+          font-size: 20px;
+          text-align: center;
+        }
+
+        * {
+          vertical-align: 0;
+        }
+      }
+    }
+  }
 }
 
 .org-list {
   display: grid;
+  flex: 1 1 auto;
   grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
   grid-gap: 20px;
   padding: 0;
@@ -18,6 +353,28 @@
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     grid-gap: 10px;
     margin: 20px 10px;
+    overflow-x: hidden;
+  }
+
+  &--empty {
+    min-height: calc(100vh - 100px);
+
+    &::before {
+      display: block;
+      margin: 100px auto;
+      font-size: 40px;
+      color: $color-gray-text;
+      text-align: center;
+      content: "🤔❓🔎";
+    }
+
+    p {
+      margin: 10px 20px;
+      font-size: 12px;
+      line-height: 1.7em;
+      color: $color-gray-text;
+      text-align: center;
+    }
   }
 
   // グリッドアイテム
@@ -25,8 +382,8 @@
     position: relative;
 
     // 基本マージン（縦方向、横方向）
-    $margin-tb: 15px;
-    $margin-lr: 15px;
+    $margin-tb: 10px;
+    $margin-lr: 10px;
 
     // キャプション部分の上下マージン
     $caption-margin-tb: 20px;
@@ -72,9 +429,9 @@
         width: calc(100% - #{$margin-lr} * 2);
         height: calc(100% - #{$margin-tb + $caption-height + $caption-margin-tb + max($margin-tb, $caption-margin-tb)}); // アスペクト比が基準外でも規定サイズで表示させる
         margin: $margin-tb $margin-lr;
-        object-fit: cover;
         background: #fff; // 透過画像の背景を確保する
         border: 1px solid #ddd;
+        object-fit: cover;
       }
 
       figcaption {
