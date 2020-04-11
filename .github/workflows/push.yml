@@ -40,11 +40,11 @@ jobs:
       with:
         path: ./.cache
         key: ${{ runner.os }}-gatsby-dev-dot-cache-${{ hashFiles('**/package.json') }}
-      - name: "Use cache for Gatsby /public"
-        uses: actions/cache@v1
-        with:
-          path: ./public
-          key: ${{ runner.os }}-gatsby-dev-public-${{ hashFiles('**/package.json') }}
+    - name: "Use cache for Gatsby /public"
+      uses: actions/cache@v1
+      with:
+        path: ./public
+        key: ${{ runner.os }}-gatsby-dev-public-${{ hashFiles('**/package.json') }}
     - uses: actions/setup-node@v1
       with:
         node-version: 12.x
