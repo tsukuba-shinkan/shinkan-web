@@ -6,7 +6,10 @@ import SEO from "../components/seo"
 
 const aboutPage = () => (
   <Layout>
-    <SEO title="このサイトについて" />
+    <SEO
+      title="このサイトについて"
+      description="このサイトは2020年度の新歓活動が新型コロナウイルスの影響により大幅に制限されることを受け、筑波大学Webページ学生委員会が中心となって製作しました。 筑波大学内のサークル等の団体のポータルサイトとしてご活用いただければ幸いです。"
+    />
     <div className="page--about">
       <div className="about--paragraph">
         <h1>このサイトについて</h1>
