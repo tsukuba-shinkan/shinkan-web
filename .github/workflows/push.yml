@@ -106,9 +106,9 @@ jobs:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
     - name: deploy with lftp
       if: github.ref == 'refs/heads/master'
-      run: lftp -c "set net:max-retries 1; set sftp:connect-program \"ssh -a -x -p $SSH_PORT -i .ssh/id_rsa -o StrictHostKeyChecking=no\"; connect sftp://$SSH_USER:@$SSH_HOST; mirror --delete --only-newer -eR -x .git -x .ssh -x .htaccess ./public/ $SSH_DIR; quit"
+      run: lftp -c "set net:max-retries 1; set sftp:connect-program \"ssh -a -x -p $SSH_PORT -i .ssh/id_rsa -o StrictHostKeyChecking=no\"; connect sftp://$SSH_USER:@$SSH_HOST; mirror --delete --only-newer -eR -x .git -x .ssh -x .htaccess ./public $SSH_DIR; quit"
       env:
         SSH_PORT: 22
         SSH_USER: shinkan-web
         SSH_HOST: www.stb.tsukuba.ac.jp
-        SSH_DIR:  ~/public_html/
+        SSH_DIR:  ~/public_html
