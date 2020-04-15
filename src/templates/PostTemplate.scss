@@ -138,12 +138,27 @@
         border: 1px solid #bbb;
 
         @include mq-down() {
+          position: relative;
+          width: auto;
+          height: auto;
           margin-bottom: 0;
+
+          &::before {
+            display: block;
+            margin-bottom: 100%;
+            content: '';
+          }
         }
 
         .gatsby-image-wrapper {
           width: 100%;
           height: 100%;
+
+          @include mq-down() {
+            position: absolute !important;
+            top: 0;
+            left: 0;
+          }
         }
       }
     }
