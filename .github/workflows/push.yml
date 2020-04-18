@@ -33,6 +33,16 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
+    - name: "Use cache for Gatsby /.cache"
+      uses: actions/cache@v1
+      with:
+        path: ./.cache
+        key: ${{ runner.os }}-gatsby-dev-dot-cache-${{ hashFiles('**/package.json') }}
+    - name: "Use cache for Gatsby /public"
+      uses: actions/cache@v1
+      with:
+        path: ./public
+        key: ${{ runner.os }}-gatsby-dev-public-${{ hashFiles('**/package.json') }}
     - uses: actions/setup-node@v1
       with:
         node-version: 12.x
@@ -56,6 +66,20 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
+    - name: "Use cache for Gatsby .cache"
+      uses: actions/cache@v1
+      if: github.ref == 'refs/heads/master'
+      with:
+        path: ./.cache
+        key: ${{ runner.os }}-gatsby-prod-dot-cache-${{ hashFiles('**/package.json') }}
+    - name: "Use cache for Gatsby /public"
+      uses: actions/cache@v1
+      with:
+        path: ./public
+        key: ${{ runner.os }}-gatsby-prod-public-${{ hashFiles('**/package.json') }}
+    - name: "Clear source data"
+      shell: bash
+      run: rm -rf ./.cache/caches/@tsukuba-shinkan
     - uses: actions/setup-node@v1
       if: github.ref == 'refs/heads/master'
       with:
@@ -68,7 +92,7 @@ jobs:
       run: npm run build --prefix-paths
       env:
         SRC_FILE_ID: 1SDP5wlB7DtIa5pP1R7Idpw91RwbFUZuJczkW2kab9Vc 
-        PREFIX_PATHS: /~shinkan-web
+        PATH_PREFIX: /~shinkan-web
     - name: install lftp
       if: github.ref == 'refs/heads/master'
       run: sudo apt-get update && sudo apt-get install -y lftp
@@ -82,9 +106,9 @@ jobs:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
     - name: deploy with lftp
       if: github.ref == 'refs/heads/master'
-      run: lftp -e "set net:max-retries 1; set sftp:connect-program \"ssh -a -x -p $SSH_PORT -i .ssh/id_rsa -o StrictHostKeyChecking=no\"; connect sftp://$SSH_USER:@$SSH_HOST; mirror --delete --only-newer -eR -x .git -x .ssh ./public $SSH_DIR; quit"
+      run: lftp -c "set net:max-retries 1; set sftp:connect-program \"ssh -a -x -p $SSH_PORT -i .ssh/id_rsa -o StrictHostKeyChecking=no\"; connect sftp://$SSH_USER:@$SSH_HOST; mirror --delete --only-newer -eR -x .git -x .ssh -x .htaccess ./public $SSH_DIR; quit"
       env:
         SSH_PORT: 22
         SSH_USER: shinkan-web
         SSH_HOST: www.stb.tsukuba.ac.jp
-        SSH_DIR:  ~/public_html/
+        SSH_DIR:  ~/public_html

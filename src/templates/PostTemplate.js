@@ -51,18 +51,29 @@ const Post = ({ data }) => {
               <ul // その他画像リスト
                 className="post-template__visual__image-list"
               >
-                {org.otherImageUrls.map(url => (
-                  <li
-                    key={url}
-                    className="item"
-                    onClick={() => {
-                      setLightboxIndex(lightboxImages.indexOf(url))
-                      setLightboxOpenState(true)
-                    }}
-                  >
-                    <Fluid200 url={url} alt="" />
-                  </li>
-                ))}
+                {org.otherImageUrls.map((url, i) =>
+                  i < 5 ? (
+                    <li
+                      key={url}
+                      className="item"
+                      onClick={() => {
+                        setLightboxIndex(lightboxImages.indexOf(url))
+                        setLightboxOpenState(true)
+                      }}
+                    >
+                      <Fluid200 url={url} alt="" />
+                      {org.otherImageUrls.length >= 5 && i === 4 ? (
+                        <span className="overflow-length-overlay">
+                          <span>+{org.otherImageUrls.length - 5 + 1}</span>
+                        </span>
+                      ) : (
+                        ""
+                      )}
+                    </li>
+                  ) : (
+                    ""
+                  )
+                )}
               </ul>
             </div>
           </section>
