@@ -9,7 +9,7 @@ export default function Fluid200({ url, alt }) {
         nodes {
           id
           fluid(maxWidth: 200) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_noBase64
           }
           parent {
             ... on File {
