@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createRef } from "react"
+import React, { useState, useLayoutEffect, createRef } from "react"
 import { graphql, useStaticQuery, navigate } from "gatsby"
 import "./index.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -13,9 +13,27 @@ const IndexPage = () => {
   const [lastTouchedItem, setLastTouchedItem] = useState(null)
 
   // ポスターのシャッフル
+  const [orgsOrder, setOrgsOrder] = useState([])
   const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
   const shuffle = () => (mounted ? 1 : Math.random() - 0.5)
+
+  useLayoutEffect(() => {
+    setMounted(true)
+    let ss = sessionStorage.getItem("shuffle_seed")
+    if (!ss) {
+      // sessionStorageにポスター表示順が管理されていない時，シャッフルしてSessionStorageに表示順を保存
+      ss = [...Array(orgs.edges.length).keys()].sort(shuffle)
+      sessionStorage.setItem("shuffle_seed", JSON.stringify(ss))
+    } else {
+      ss = JSON.parse(ss)
+      if (ss.length !== orgs.edges.length) {
+        // SessionStorageの団体数が異なる場合，更新があったということなのでSessionStorageの値を更新する．
+        ss = [...Array(orgs.edges.length).keys()].sort(shuffle)
+        sessionStorage.setItem("shuffle_seed", JSON.stringify(ss))
+      }
+    }
+    setOrgsOrder(ss)
+  }, [])
 
   // サーチ文字列: string
   const [queryString, setQueryString] = useState("")
@@ -89,7 +107,10 @@ const IndexPage = () => {
   `)
 
   const filteredOrgs = orgs.edges
-    .sort(shuffle)
+    .reduce((prev, edge, index, edges) => {
+      if (orgsOrder.length > 0) return [...prev, edges[orgsOrder[index]]]
+      else return [...prev, edges[index]]
+    }, [])
     .filter(({ node: org }) => filterWithQueries(org))
 
   return (
