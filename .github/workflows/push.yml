@@ -89,7 +89,7 @@ jobs:
       run: npm ci
     - name: build
       if: github.ref == 'refs/heads/master'
-      run: npm run build --prefix-paths
+      run: npm run build -- --prefix-paths
       env:
         SRC_FILE_ID: 1SDP5wlB7DtIa5pP1R7Idpw91RwbFUZuJczkW2kab9Vc 
         PATH_PREFIX: /~shinkan-web
