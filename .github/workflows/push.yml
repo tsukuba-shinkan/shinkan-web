@@ -89,26 +89,12 @@ jobs:
       run: npm ci
     - name: build
       if: github.ref == 'refs/heads/master'
-      run: npm run build --prefix-paths
+      run: npm run build -- --prefix-paths
       env:
         SRC_FILE_ID: 1SDP5wlB7DtIa5pP1R7Idpw91RwbFUZuJczkW2kab9Vc 
         PATH_PREFIX: /~shinkan-web
-    - name: install lftp
-      if: github.ref == 'refs/heads/master'
-      run: sudo apt-get update && sudo apt-get install -y lftp
-    - name: prepare .ssh dir
-      if: github.ref == 'refs/heads/master'
-      run: mkdir -p .ssh && chmod 700 .ssh
-    - name: ssh key generate
-      if: github.ref == 'refs/heads/master'
-      run: echo "$SSH_PRIVATE_KEY" > .ssh/id_rsa && chmod 600 .ssh/id_rsa
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-    - name: deploy with lftp
-      if: github.ref == 'refs/heads/master'
-      run: lftp -c "set net:max-retries 1; set sftp:connect-program \"ssh -a -x -p $SSH_PORT -i .ssh/id_rsa -o StrictHostKeyChecking=no\"; connect sftp://$SSH_USER:@$SSH_HOST; mirror --delete --only-newer -eR -x .git -x .ssh -x .htaccess ./public $SSH_DIR; quit"
-      env:
-        SSH_PORT: 22
-        SSH_USER: shinkan-web
-        SSH_HOST: www.stb.tsukuba.ac.jp
-        SSH_DIR:  ~/public_html
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Production build artifact
+        path: ./public
